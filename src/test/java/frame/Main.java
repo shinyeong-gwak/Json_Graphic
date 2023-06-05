@@ -54,25 +54,25 @@ public class Main {
 
             panel.setPreferredSize(new Dimension(400, 300));
 
-            JButton zoomInButton = new JButton("Zoom In");
-            zoomInButton.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    ((Main.MainPanel) panel).zoomIn();
-                }
-            });
-
-            JButton zoomOutButton = new JButton("Zoom Out");
-            zoomOutButton.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    ((Main.MainPanel) panel).zoomOut();
-                }
-            });
+//            JButton zoomInButton = new JButton("Zoom In");
+//            zoomInButton.addActionListener(new ActionListener() {
+//                @Override
+//                public void actionPerformed(ActionEvent e) {
+//                    ((Main.MainPanel) panel).zoomIn();
+//                }
+//            });
+//
+//            JButton zoomOutButton = new JButton("Zoom Out");
+//            zoomOutButton.addActionListener(new ActionListener() {
+//                @Override
+//                public void actionPerformed(ActionEvent e) {
+//                    ((Main.MainPanel) panel).zoomOut();
+//                }
+//            });
 
             JPanel buttonPanel = new JPanel();
-            buttonPanel.add(zoomInButton);
-            buttonPanel.add(zoomOutButton);
+            //buttonPanel.add(zoomInButton);
+            //buttonPanel.add(zoomOutButton);
 
             panel.add(buttonPanel, BorderLayout.NORTH);
             scrollPane.setViewportView(panel);

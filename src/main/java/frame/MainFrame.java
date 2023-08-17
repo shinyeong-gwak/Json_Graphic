@@ -15,6 +15,63 @@ import java.util.List;
 
 public class MainFrame extends JFrame{
     public MainFrame() {
+        class NorthPanel extends JPanel {
+            public NorthPanel() {
+                setLayout(new GridBagLayout());
+
+                add(new JLabel("json 경로 : "));
+                add(jsonPath);
+                for (int i = 0; i < 2; i++) {
+                    add(new JLabel());
+                }
+
+                JButton sco = new JButton("x2");
+                sco.addActionListener(e -> {
+                    coordPanel.setScale();
+                    coordPanel.repaint();
+                });
+                add(sco);
+
+                // You can add any additional components here
+            }
+        }
+        class SouthPanel extends JPanel {
+            public SouthPanel() {
+                setLayout(new GridLayout(1, 7));
+
+                JButton path = new JButton("Path");
+                JLabel dirLabel = new JLabel();
+                path.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        JFileChooser fileChooser = new JFileChooser();
+                        fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY); // 디렉토리 선택 모드 설정
+                        int returnValue = fileChooser.showOpenDialog(null); // 경로 선택 창 열기
+
+                        if (returnValue == JFileChooser.APPROVE_OPTION) {
+                            File selectedDirectory = fileChooser.getSelectedFile();
+                            String dirPath = selectedDirectory.getAbsolutePath();
+                            dirLabel.setText(dirPath);
+
+                            //JOptionPane.showMessageDialog(null, "Selected Directory Path: " + dirPath);
+                        }
+                    }});
+                JButton run = new JButton("run");
+                run.addActionListener(e -> {
+                    setNRun();
+                });
+                add(new JLabel());
+                add(new JLabel());
+                add(new JLabel());
+                add(new JLabel("report 저장 위치 : "));
+                add(dirLabel);
+                add(path);
+                add(run);
+
+                // You can add any additional components here
+            }
+        }
+        jsonPath = new JLabel();
 
         JMenuBar menuBar = new JMenuBar();
         FileMenu fileMenu = new FileMenu("File");
@@ -22,30 +79,25 @@ public class MainFrame extends JFrame{
         ViewMenu viewMenu = new ViewMenu("View");
         contentPane = new JPanel(new BorderLayout());
 
-        scrollCood = new ScrollPane();
         coordPanel = new CoordPanel();
-        scrollPane = new ScrollPane();
         infoPanel = new InfoPanel();
-
-        JButton sco = new JButton("2배");
+        northPanel = new NorthPanel();
+        southPanel = new SouthPanel();
 
         setFocusableWindowState(false);
         setLocationRelativeTo(null);
 
-        sco.addActionListener(e -> {coordPanel.setScale(); coordPanel.repaint();});
-        contentPane.add(sco,BorderLayout.NORTH);
-
-        scrollCood.setPreferredSize(new Dimension(500,800));
-        scrollCood.add(coordPanel);
-        contentPane.add(scrollCood, BorderLayout.EAST);
+        contentPane.add(coordPanel, BorderLayout.EAST);
         contentPane.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
-        scrollPane.setPreferredSize(new Dimension(480,800));
-        scrollPane.add(infoPanel);
-        contentPane.add(scrollPane, BorderLayout.WEST);
+        contentPane.add(infoPanel, BorderLayout.WEST);
 
         menuBar.add(fileMenu);
         menuBar.add(editMenu);
         menuBar.add(viewMenu);
+
+
+        contentPane.add(southPanel, BorderLayout.SOUTH);
+        contentPane.add(northPanel, BorderLayout.NORTH);
 
         add(contentPane);
         setJMenuBar(menuBar);
@@ -56,12 +108,22 @@ public class MainFrame extends JFrame{
         setVisible(true);
 
     }
+
+    //public static JLabel setFileName() {
+
+    //}
+
+    private void setNRun() {
+    }
+
     private static JsonData jsonData; // 추 후 여러 개로 변환 가능성
     public static JPanel contentPane;
     public static CoordPanel coordPanel;
-    public static ScrollPane scrollPane;
-    public static ScrollPane scrollCood;
+    public static JPanel northPanel;
+    public static JPanel southPanel;
     public static InfoPanel infoPanel;
+    public static JLabel jsonPath;
+    public static JLabel reportPath;
     public static List<Node_AP> nodeAPList;
     public static List<Node_Station> nodeStaList;
 
@@ -106,6 +168,7 @@ public class MainFrame extends JFrame{
 }
 
 class FileMenu extends JMenu {
+
     public FileMenu(String title) {
         super(title);
         JMenuItem openMenuItem = new OpenMenuItem("Open");
@@ -118,6 +181,7 @@ class FileMenu extends JMenu {
     }
 
     private class OpenMenuItem extends JMenuItem implements ActionListener {
+
         public OpenMenuItem(String title) {
             super(title);
             addActionListener(this);
@@ -142,6 +206,7 @@ class FileMenu extends JMenu {
                     JsonData jsonData = JsonParser.parse(selectedFile);
                     // Set the parsed data in MainFrame
                     MainFrame.setJsonData(jsonData);
+                    MainFrame.jsonPath.setText(filePath);
 
 
                 } else {

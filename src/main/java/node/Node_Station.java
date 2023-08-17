@@ -18,8 +18,8 @@ public class Node_Station extends Node {
 
     @Override
     public void drawNode(Graphics2D g, double scale) {
-        int x = (int) (station.location[0] + (500 / 2) * scale);
-        int y = (int) (station.location[1] + (800 / 2) * scale);
+        int x = (int) (station.location[0] * scale);
+        int y = (int) (station.location[1] * scale);
         circle = new Ellipse2D.Double(x,y,(5*scale+1),(5*scale+1));
         if (focusbit) {
             g.drawOval(x,y,(int) (5*scale+1),(int) (5*scale+1));

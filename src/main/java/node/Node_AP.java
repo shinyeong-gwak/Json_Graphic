@@ -20,8 +20,8 @@ public class Node_AP extends Node {
     @Override
     public void drawNode(Graphics2D g, double scale) {
 
-        int x = (int) (network.AP.location[0] + (500 / 2) * scale);
-        int y = (int) (network.AP.location[1] + (800 / 2) * scale);
+        int x = (int) (network.AP.location[0] * scale);
+        int y = (int) (network.AP.location[1] * scale);
         //System.out.printf("[circle] %d, %d",x,y);
         circle = new Ellipse2D.Double(x,y,5*scale,5*scale);
         if (focusbit) {

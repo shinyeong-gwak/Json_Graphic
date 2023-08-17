@@ -42,14 +42,20 @@ public class CoordPanel extends JPanel implements MouseListener{//, MouseWheelLi
     }
 
     public CoordPanel() {
-        setPreferredSize(new Dimension(5000,8000));
+        setPreferredSize(new Dimension(500,800));
         setBackground(Color.LIGHT_GRAY);
         JTextArea coordText = new JTextArea("This is the coordinate panel.");
         coordText.setEditable(false);
         add(coordText, BorderLayout.CENTER);
         addMouseListener(this);
-        requestFocusInWindow();
 
+        // 버튼 1 (우측 하단)
+        JButton zoomin = new JButton("+");
+        add(zoomin, BorderLayout.PAGE_END);
+
+        // 버튼 2 (우측 하단)
+        JButton zoomout = new JButton("-");
+        add(zoomout, BorderLayout.PAGE_END);
         //addMouseWheelListener(this);
 
     }

@@ -9,13 +9,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8c3b646c-4b8a-46a4-b8fc-df703ad44052" name="변경" comment="전체&#10;구현 내용&#10;- open : json 파일 불러와 그래프에 그리기&#10;- 노드를 누르면 노드 정보가 info panel에 생성&#10;- 좌표 2배 버튼 누르면 확대&#10;- 클릭한 노드와 같은 ssid를 가지고 있는 노드 포커스 생성">
+    <list default="true" id="8c3b646c-4b8a-46a4-b8fc-df703ad44052" name="변경" comment="전체&#10;구현 내용&#10;- 그래프 면 정리, 2배 확대 방법 결정 중&#10;- json파일 경로 불러오기, report 저장할 경로 불러오기, run 버튼 구현 중&#10;- 노드 클래스 각자가 자신의 위치 정보, 네트워크 정보를 가질 수 있도록 수정">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/JsonGenarater_jar/JsonGenarater.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/JsonGenarater_jar/JsonGenarater.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frame/CoordPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frame/CoordPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/frame/InfoPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frame/InfoPanel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/frame/MainFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frame/MainFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/node/Node_AP.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/node/Node_AP.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/node/Node_Station.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/node/Node_Station.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,21 +91,8 @@
       <recent name="Json" />
     </key>
   </component>
-  <component name="RunManager" selected="애플리케이션.MainFrame (5)">
+  <component name="RunManager" selected="애플리케이션.MainFrame (1)">
     <configuration name="MainFrame (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="frame.MainFrame" />
-      <module name="JsonGenarater" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="frame.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="MainFrame (2)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="frame.MainFrame" />
       <module name="JsonGenarater" />
       <extension name="coverage">
@@ -159,13 +144,26 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="MainFrame" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="frame.MainFrame" />
+      <module name="JsonGenarater" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="frame.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="애플리케이션.MainFrame (5)" />
-        <item itemvalue="애플리케이션.MainFrame (2)" />
         <item itemvalue="애플리케이션.MainFrame (1)" />
         <item itemvalue="애플리케이션.MainFrame (4)" />
         <item itemvalue="애플리케이션.MainFrame (3)" />
+        <item itemvalue="애플리케이션.MainFrame" />
+        <item itemvalue="애플리케이션.MainFrame (5)" />
       </list>
     </recent_temporary>
   </component>
@@ -195,7 +193,8 @@
       <workItem from="1689599478506" duration="1756000" />
       <workItem from="1689926110901" duration="1000" />
       <workItem from="1691131853332" duration="699000" />
-      <workItem from="1691980289084" duration="8522000" />
+      <workItem from="1691980289084" duration="20219000" />
+      <workItem from="1692581319398" duration="14612000" />
     </task>
     <task id="LOCAL-00001" summary="전체&#10;구현 내용&#10;- open : json 파일 불러와 그래프에 그리기&#10;- 노드를 누르면 노드 정보가 info panel에 생성&#10;- 좌표 2배 버튼 누르면 확대&#10;- 클릭한 노드와 같은 ssid를 가지고 있는 노드 포커스 생성">
       <created>1685924230619</created>
@@ -211,7 +210,14 @@
       <option name="project" value="LOCAL" />
       <updated>1685926297191</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="전체&#10;구현 내용&#10;- 그래프 면 정리, 2배 확대 방법 결정 중&#10;- json파일 경로 불러오기, report 저장할 경로 불러오기, run 버튼 구현 중&#10;- 노드 클래스 각자가 자신의 위치 정보, 네트워크 정보를 가질 수 있도록 수정">
+      <created>1692237156424</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1692237156424</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -219,7 +225,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="전체&#10;구현 내용&#10;- open : json 파일 불러와 그래프에 그리기&#10;- 노드를 누르면 노드 정보가 info panel에 생성&#10;- 좌표 2배 버튼 누르면 확대&#10;- 클릭한 노드와 같은 ssid를 가지고 있는 노드 포커스 생성" />
-    <option name="LAST_COMMIT_MESSAGE" value="전체&#10;구현 내용&#10;- open : json 파일 불러와 그래프에 그리기&#10;- 노드를 누르면 노드 정보가 info panel에 생성&#10;- 좌표 2배 버튼 누르면 확대&#10;- 클릭한 노드와 같은 ssid를 가지고 있는 노드 포커스 생성" />
+    <MESSAGE value="전체&#10;구현 내용&#10;- 그래프 면 정리, 2배 확대 방법 결정 중&#10;- json파일 경로 불러오기, report 저장할 경로 불러오기, run 버튼 구현 중&#10;- 노드 클래스 각자가 자신의 위치 정보, 네트워크 정보를 가질 수 있도록 수정" />
+    <option name="LAST_COMMIT_MESSAGE" value="전체&#10;구현 내용&#10;- 그래프 면 정리, 2배 확대 방법 결정 중&#10;- json파일 경로 불러오기, report 저장할 경로 불러오기, run 버튼 구현 중&#10;- 노드 클래스 각자가 자신의 위치 정보, 네트워크 정보를 가질 수 있도록 수정" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -235,13 +242,8 @@
           <option name="timeStamp" value="13" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/node/Node_Station.java</url>
-          <line>28</line>
-          <option name="timeStamp" value="14" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/frame/InfoPanel.java</url>
-          <line>44</line>
+          <line>118</line>
           <option name="timeStamp" value="15" />
         </line-breakpoint>
       </breakpoints>

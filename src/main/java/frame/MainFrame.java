@@ -12,32 +12,41 @@ import java.awt.event.ActionEvent;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
 
 public class MainFrame extends JFrame{
     public MainFrame() {
         class NorthPanel extends JPanel {
             public NorthPanel() {
                 setLayout(new GridBagLayout());
+                GridBagConstraints c = new GridBagConstraints();
+                c.gridy = 1;
+                c.gridx = 1;
+                c.fill = GridBagConstraints.BOTH;
 
-                add(new JLabel("json 경로 : "));
-                add(jsonPath);
-                for (int i = 0; i < 2; i++) {
-                    add(new JLabel());
-                }
-
+                add(new JLabel("json 경로 : "),c);
+                c.gridx = 2;
+                c.weightx = 2;
+                add(jsonPath,c);
+                c.gridx = 6;
                 JButton sco = new JButton("x2");
                 sco.addActionListener(e -> {
                     coordPanel.setScale();
                     coordPanel.repaint();
                 });
-                add(sco);
+                add(sco,c);
 
                 // You can add any additional components here
             }
         }
         class SouthPanel extends JPanel {
             public SouthPanel() {
-                setLayout(new GridLayout(1, 7));
+                setLayout(new GridBagLayout());
+                GridBagConstraints c = new GridBagConstraints();
+                c.fill = GridBagConstraints.BOTH;
 
                 JButton path = new JButton("Path");
                 JLabel dirLabel = new JLabel();
@@ -58,15 +67,20 @@ public class MainFrame extends JFrame{
                     }});
                 JButton run = new JButton("run");
                 run.addActionListener(e -> {
-                    setNRun();
+                    output = setNRun();
+                    showResultInNewWindow(output)
                 });
-                add(new JLabel());
-                add(new JLabel());
-                add(new JLabel());
-                add(new JLabel("report 저장 위치 : "));
-                add(dirLabel);
-                add(path);
-                add(run);
+                c.gridy =1;
+                c.gridx = 1;
+                add(new JLabel("report 저장 위치 : "),c);
+                c.weightx = 3;
+                c.gridx ++;
+                add(dirLabel,c);
+                c.weightx = 0.3;
+                c.gridx = 5;
+                add(path,c);
+                c.gridx++;
+                add(run,c);
 
                 // You can add any additional components here
             }
@@ -109,11 +123,53 @@ public class MainFrame extends JFrame{
 
     }
 
+    private void showResultInNewWindow(String result) {
+        JFrame newFrame = new JFrame("Command Result");
+        newFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
+        JTextArea resultTextArea = new JTextArea(result);
+        resultTextArea.setEditable(false);
+
+        JScrollPane scrollPane = new JScrollPane(resultTextArea);
+        newFrame.add(scrollPane);
+
+        newFrame.pack();
+        newFrame.setVisible(true);
+    }
+
     //public static JLabel setFileName() {
 
     //}
 
-    private void setNRun() {
+    private String setNRun() {
+
+        if (jsonPath.getText().isEmpty()) {
+            System.out.println("error!");
+        }
+        String command = "./ns3 run \"wifi-mlms --config="+jsonPath+"\"";
+        try {
+            Process process = new ProcessBuilder("bash", "-c", command)
+                    .directory(null) // 상위 경로에서 실행하도록 설정
+                    .start();
+
+            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+            StringBuilder output = new StringBuilder();
+            String line;
+            while ((line = reader.readLine()) != null) {
+                output.append(line).append("\n");
+            }
+
+            int exitCode = process.waitFor();
+            if (exitCode == 0) {
+                return output.toString();
+            } else {
+                return "Error executing command.";
+            }
+        } catch (IOException | InterruptedException e) {
+            e.printStackTrace();
+            return "Exception occurred: " + e.getMessage();
+        }
+
     }
 
     private static JsonData jsonData; // 추 후 여러 개로 변환 가능성
@@ -124,6 +180,7 @@ public class MainFrame extends JFrame{
     public static InfoPanel infoPanel;
     public static JLabel jsonPath;
     public static JLabel reportPath;
+    public static String output;
     public static List<Node_AP> nodeAPList;
     public static List<Node_Station> nodeStaList;
 

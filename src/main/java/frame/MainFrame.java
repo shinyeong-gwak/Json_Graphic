@@ -68,7 +68,7 @@ public class MainFrame extends JFrame{
                 JButton run = new JButton("run");
                 run.addActionListener(e -> {
                     output = setNRun();
-                    showResultInNewWindow(output)
+                    showResultInNewWindow(output);
                 });
                 c.gridy =1;
                 c.gridx = 1;

@@ -1,5 +1,6 @@
 package Json;
 
+import java.util.ArrayList;
 import java.util.List;
 
 enum Qos_AC {
@@ -7,9 +8,10 @@ enum Qos_AC {
 }
 public class JsonData {
     public long simulationTime;
-    public List<Network> networks;
-    public List<Station> stations;
+    public ArrayList<Network> networks;
+    public ArrayList<Station> stations;
     //access category 추가 필요
+
 
 }
 

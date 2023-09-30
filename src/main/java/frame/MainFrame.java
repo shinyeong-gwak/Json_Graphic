@@ -9,101 +9,38 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.io.File;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 
 
 public class MainFrame extends JFrame{
     public MainFrame() {
-        class NorthPanel extends JPanel {
-            public NorthPanel() {
-                setLayout(new GridBagLayout());
-                GridBagConstraints c = new GridBagConstraints();
-                c.gridy = 1;
-                c.gridx = 1;
-                c.fill = GridBagConstraints.BOTH;
 
-                add(new JLabel("json 경로 : "),c);
-                c.gridx = 2;
-                c.weightx = 2;
-                add(jsonPath,c);
-                c.gridx = 6;
-                JButton sco = new JButton("x2");
-                sco.addActionListener(e -> {
-                    coordPanel.setScale();
-                    coordPanel.repaint();
-                });
-                add(sco,c);
+        jsonPath = new JTextField();
 
-                // You can add any additional components here
-            }
-        }
-        class SouthPanel extends JPanel {
-            public SouthPanel() {
-                setLayout(new GridBagLayout());
-                GridBagConstraints c = new GridBagConstraints();
-                c.fill = GridBagConstraints.BOTH;
-
-                JButton path = new JButton("Path");
-                JLabel dirLabel = new JLabel();
-                path.addActionListener(new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        JFileChooser fileChooser = new JFileChooser();
-                        fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY); // 디렉토리 선택 모드 설정
-                        int returnValue = fileChooser.showOpenDialog(null); // 경로 선택 창 열기
-
-                        if (returnValue == JFileChooser.APPROVE_OPTION) {
-                            File selectedDirectory = fileChooser.getSelectedFile();
-                            String dirPath = selectedDirectory.getAbsolutePath();
-                            dirLabel.setText(dirPath);
-
-                            //JOptionPane.showMessageDialog(null, "Selected Directory Path: " + dirPath);
-                        }
-                    }});
-                JButton run = new JButton("run");
-                run.addActionListener(e -> {
-                    output = setNRun();
-                    showResultInNewWindow(output);
-                });
-                c.gridy =1;
-                c.gridx = 1;
-                add(new JLabel("report 저장 위치 : "),c);
-                c.weightx = 3;
-                c.gridx ++;
-                add(dirLabel,c);
-                c.weightx = 0.3;
-                c.gridx = 5;
-                add(path,c);
-                c.gridx++;
-                add(run,c);
-
-                // You can add any additional components here
-            }
-        }
-        jsonPath = new JLabel();
-
-        JMenuBar menuBar = new JMenuBar();
+        menuBar = new JMenuBar();
         FileMenu fileMenu = new FileMenu("File");
         EditMenu editMenu = new EditMenu("Edit");
         ViewMenu viewMenu = new ViewMenu("View");
         contentPane = new JPanel(new BorderLayout());
 
-        coordPanel = new CoordPanel();
         infoPanel = new InfoPanel();
+        JScrollPane scrollPane = new JScrollPane(infoPanel) {{setPreferredSize(new Dimension(480,700));}};
+        scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
+        coordPanel = new CoordPanel();
         northPanel = new NorthPanel();
         southPanel = new SouthPanel();
 
         setFocusableWindowState(false);
-        setLocationRelativeTo(null);
-
-        contentPane.add(coordPanel, BorderLayout.EAST);
+        setLocationRelativeTo(coordPanel);
+        JScrollPane coordScroll = new JScrollPane(coordPanel) {{setPreferredSize(new Dimension(500,700));}};
+        contentPane.add(coordScroll, BorderLayout.EAST);
         contentPane.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
-        contentPane.add(infoPanel, BorderLayout.WEST);
+        contentPane.add(scrollPane, BorderLayout.WEST);
 
         menuBar.add(fileMenu);
         menuBar.add(editMenu);
@@ -116,69 +53,49 @@ public class MainFrame extends JFrame{
         add(contentPane);
         setJMenuBar(menuBar);
 
+        //테스트용 코드 완성 시 없애기!!!!!
+        String filePath = "/Users/shinyeonggwak/Desktop/test-scenario.json";
+        File selectedFile = new File(filePath);
+        JsonData jsonData = JsonParser.parse(selectedFile);
+        MainFrame.setJsonData(jsonData);
+        MainFrame.jsonPath.setText(filePath);
+        //테스트 완료 시 해제
+
+//        addWindowListener(new WindowAdapter() {
+//            @Override
+//            public void windowStateChanged(WindowEvent e) {
+//                if (e.getNewState() == Frame.MAXIMIZED_BOTH) {
+//                    Dimension newSize = new Dimension(getWidth()-infoPanel.getWidth()-40, getHeight());
+//                    coordScroll.setPreferredSize(newSize);
+//                    coordScroll.revalidate();
+//                } else if (e.getNewState() == Frame.NORMAL) {
+//                    Dimension newSize = new Dimension(getWidth()/2-40, getHeight());
+//                    coordScroll.setPreferredSize(newSize);
+//                }
+//            }
+//        });
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(1000, 800);
+        frameDim = new Dimension(1000,800);
+        setSize(frameDim);
         setVisible(true);
 
-    }
-
-    private void showResultInNewWindow(String result) {
-        JFrame newFrame = new JFrame("Command Result");
-        newFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-
-        JTextArea resultTextArea = new JTextArea(result);
-        resultTextArea.setEditable(false);
-
-        JScrollPane scrollPane = new JScrollPane(resultTextArea);
-        newFrame.add(scrollPane);
-
-        newFrame.pack();
-        newFrame.setVisible(true);
     }
 
     //public static JLabel setFileName() {
 
     //}
 
-    private String setNRun() {
-
-        if (jsonPath.getText().isEmpty()) {
-            System.out.println("error!");
-        }
-        String command = "./ns3 run \"wifi-mlms --config="+jsonPath+"\"";
-        try {
-            Process process = new ProcessBuilder("bash", "-c", command)
-                    .directory(null) // 상위 경로에서 실행하도록 설정
-                    .start();
-
-            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-            StringBuilder output = new StringBuilder();
-            String line;
-            while ((line = reader.readLine()) != null) {
-                output.append(line).append("\n");
-            }
-
-            int exitCode = process.waitFor();
-            if (exitCode == 0) {
-                return output.toString();
-            } else {
-                return "Error executing command.";
-            }
-        } catch (IOException | InterruptedException e) {
-            e.printStackTrace();
-            return "Exception occurred: " + e.getMessage();
-        }
-
-    }
-
+    public static Dimension frameDim;
     private static JsonData jsonData; // 추 후 여러 개로 변환 가능성
     public static JPanel contentPane;
+    public static JMenuBar menuBar;
     public static CoordPanel coordPanel;
     public static JPanel northPanel;
     public static JPanel southPanel;
     public static InfoPanel infoPanel;
-    public static JLabel jsonPath;
+    public static JTextField jsonPath;
+    public static JButton viewRaw;
     public static JLabel reportPath;
     public static String output;
     public static List<Node_AP> nodeAPList;
@@ -253,6 +170,8 @@ class FileMenu extends JMenu {
             int result = fileChooser.showOpenDialog(FileMenu.this);
 
             if (result == JFileChooser.APPROVE_OPTION) {
+
+
                 File selectedFile = fileChooser.getSelectedFile();
                 String filePath = selectedFile.getAbsolutePath();
 
@@ -269,6 +188,7 @@ class FileMenu extends JMenu {
                 } else {
                     JOptionPane.showMessageDialog(FileMenu.this, "Selected file is not a JSON file", "Error", JOptionPane.ERROR_MESSAGE);
                 }
+
             }
         }
     }

@@ -9,23 +9,23 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class Node_Station extends Node {
-    Station station;
-    public Shape circle;
+    public Station station;
 
     public Node_Station(Station _station) {
         station = _station;
     }
 
     @Override
-    public void drawNode(Graphics2D g, double scale) {
-        int x = (int) (station.location[0] * scale);
-        int y = (int) (station.location[1] * scale);
-        circle = new Ellipse2D.Double(x,y,(5*scale+1),(5*scale+1));
+    public void drawNode(Graphics2D g, double scale, double oX, double oY) {
+        x = (int) (station.location[0] * scale + oX);
+        y = (int) (station.location[1] * scale + oY);
+
+        circle = new Ellipse2D.Double(x,y,(5*scale+10),(5*scale+10));
         if (focusbit) {
             g.drawOval(x,y,(int) (5*scale+1),(int) (5*scale+1));
             focusbit = false;
         }
-        g.fill(circle);
+        g.fillOval(x,y,(int) (5*scale+1),(int) (5*scale+1));
     }
 
     @Override

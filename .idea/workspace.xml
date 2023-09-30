@@ -2,18 +2,30 @@
 <project version="4">
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
-      <artifact name="JsonGenarater:jar" />
+      <artifact name="JsonGenarater:jar2" />
     </artifacts-to-build>
   </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8c3b646c-4b8a-46a4-b8fc-df703ad44052" name="변경" comment="전체&#10;구현 내용&#10;- 그래프 면 정리, 2배 확대 방법 결정 중&#10;- json파일 경로 불러오기, report 저장할 경로 불러오기, run 버튼 구현 중&#10;- 노드 클래스 각자가 자신의 위치 정보, 네트워크 정보를 가질 수 있도록 수정">
+    <list default="true" id="8c3b646c-4b8a-46a4-b8fc-df703ad44052" name="변경" comment="전체&#10;구현 내용&#10;- 그래프 면 정리, 2배 확대 방법 결정 중&#10;- run 버튼 구현 테스트 단계&#10;- json 그래픽에서 바꾸고 저장하는 메서드 구현 중&#10;- 경로 설정 생각해야함.&#10;- 비율이나 레이아웃 정리">
+      <change afterPath="$PROJECT_DIR$/.idea/artifacts/JsonGenarater_jar2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/frame/MenuItem.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/frame/NorthPanel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/frame/SideBoxPanel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/frame/SouthPanel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/JsonGenarater_jar/JsonGenarater.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/JsonGenarater_jar/JsonGenarater.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Json/JsonData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Json/JsonData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Json/JsonParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Json/JsonParser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Json/Station.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Json/Station.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/frame/CoordPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frame/CoordPanel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/frame/InfoPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frame/InfoPanel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/frame/MainFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frame/MainFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/node/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/node/Node.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/node/Node_AP.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/node/Node_AP.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/node/Node_Station.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/node/Node_Station.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/frame/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/frame/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,10 +86,10 @@
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;모듈&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;프로젝트&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.repository.indices&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
   &quot;keyToStringList&quot;: {
@@ -91,9 +103,9 @@
       <recent name="Json" />
     </key>
   </component>
-  <component name="RunManager" selected="애플리케이션.MainFrame (1)">
-    <configuration name="MainFrame (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="frame.MainFrame" />
+  <component name="RunManager" selected="애플리케이션.MainFrame">
+    <configuration name="Main (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="frame.Main" />
       <module name="JsonGenarater" />
       <extension name="coverage">
         <pattern>
@@ -105,8 +117,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MainFrame (3)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="frame.MainFrame" />
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="frame.Main" />
       <module name="JsonGenarater" />
       <extension name="coverage">
         <pattern>
@@ -118,20 +130,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MainFrame (4)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="frame.MainFrame" />
-      <module name="JsonGenarater" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="frame.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="MainFrame (5)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration name="MainFrame" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="frame.MainFrame" />
       <module name="JsonGenarater" />
       <extension name="coverage">
@@ -157,13 +156,51 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="frame.Main" />
+      <module name="JsonGenarater" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="frame.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="frame.Main" />
+      <module name="JsonGenarater" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="frame.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ObjectFieldDisplayer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="frame.ObjectFieldDisplayer" />
+      <module name="JsonGenarater" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="frame.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="애플리케이션.MainFrame (1)" />
-        <item itemvalue="애플리케이션.MainFrame (4)" />
-        <item itemvalue="애플리케이션.MainFrame (3)" />
         <item itemvalue="애플리케이션.MainFrame" />
-        <item itemvalue="애플리케이션.MainFrame (5)" />
+        <item itemvalue="애플리케이션.ObjectFieldDisplayer" />
+        <item itemvalue="애플리케이션.Main" />
+        <item itemvalue="애플리케이션.Main (1)" />
       </list>
     </recent_temporary>
   </component>
@@ -194,7 +231,24 @@
       <workItem from="1689926110901" duration="1000" />
       <workItem from="1691131853332" duration="699000" />
       <workItem from="1691980289084" duration="20219000" />
-      <workItem from="1692581319398" duration="14612000" />
+      <workItem from="1692581319398" duration="28946000" />
+      <workItem from="1692765453787" duration="12148000" />
+      <workItem from="1692790129159" duration="3407000" />
+      <workItem from="1692850962331" duration="1822000" />
+      <workItem from="1693194412938" duration="5505000" />
+      <workItem from="1693237888075" duration="24000" />
+      <workItem from="1694073958374" duration="653000" />
+      <workItem from="1694179321833" duration="23174000" />
+      <workItem from="1694563986327" duration="14398000" />
+      <workItem from="1694920850362" duration="599000" />
+      <workItem from="1695027577301" duration="17263000" />
+      <workItem from="1695108204387" duration="5101000" />
+      <workItem from="1695180099179" duration="88000" />
+      <workItem from="1695180197056" duration="1098000" />
+      <workItem from="1695185066073" duration="757000" />
+      <workItem from="1695266025550" duration="3399000" />
+      <workItem from="1695797466134" duration="700000" />
+      <workItem from="1695887345858" duration="4000" />
     </task>
     <task id="LOCAL-00001" summary="전체&#10;구현 내용&#10;- open : json 파일 불러와 그래프에 그리기&#10;- 노드를 누르면 노드 정보가 info panel에 생성&#10;- 좌표 2배 버튼 누르면 확대&#10;- 클릭한 노드와 같은 ssid를 가지고 있는 노드 포커스 생성">
       <created>1685924230619</created>
@@ -217,34 +271,66 @@
       <option name="project" value="LOCAL" />
       <updated>1692237156424</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="전체&#10;구현 내용&#10;- 그래프 면 정리, 2배 확대 방법 결정 중&#10;- run 버튼 구현 테스트 단계&#10;- json 그래픽에서 바꾸고 저장하는 메서드 구현 중&#10;- 경로 설정 생각해야함.&#10;- 비율이나 레이아웃 정리">
+      <created>1692596384322</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1692596384322</updated>
+    </task>
+    <task id="LOCAL-00005" summary="전체&#10;구현 내용&#10;- 그래프 면 정리, 2배 확대 방법 결정 중&#10;- run 버튼 구현 테스트 단계&#10;- json 그래픽에서 바꾸고 저장하는 메서드 구현 중&#10;- 경로 설정 생각해야함.&#10;- 비율이나 레이아웃 정리">
+      <created>1692596420822</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1692596420822</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="전체&#10;구현 내용&#10;- open : json 파일 불러와 그래프에 그리기&#10;- 노드를 누르면 노드 정보가 info panel에 생성&#10;- 좌표 2배 버튼 누르면 확대&#10;- 클릭한 노드와 같은 ssid를 가지고 있는 노드 포커스 생성" />
     <MESSAGE value="전체&#10;구현 내용&#10;- 그래프 면 정리, 2배 확대 방법 결정 중&#10;- json파일 경로 불러오기, report 저장할 경로 불러오기, run 버튼 구현 중&#10;- 노드 클래스 각자가 자신의 위치 정보, 네트워크 정보를 가질 수 있도록 수정" />
-    <option name="LAST_COMMIT_MESSAGE" value="전체&#10;구현 내용&#10;- 그래프 면 정리, 2배 확대 방법 결정 중&#10;- json파일 경로 불러오기, report 저장할 경로 불러오기, run 버튼 구현 중&#10;- 노드 클래스 각자가 자신의 위치 정보, 네트워크 정보를 가질 수 있도록 수정" />
+    <MESSAGE value="전체&#10;구현 내용&#10;- 그래프 면 정리, 2배 확대 방법 결정 중&#10;- run 버튼 구현 테스트 단계&#10;- json 그래픽에서 바꾸고 저장하는 메서드 구현 중&#10;- 경로 설정 생각해야함.&#10;- 비율이나 레이아웃 정리" />
+    <option name="LAST_COMMIT_MESSAGE" value="전체&#10;구현 내용&#10;- 그래프 면 정리, 2배 확대 방법 결정 중&#10;- run 버튼 구현 테스트 단계&#10;- json 그래픽에서 바꾸고 저장하는 메서드 구현 중&#10;- 경로 설정 생각해야함.&#10;- 비율이나 레이아웃 정리" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/frame/CoordPanel.java</url>
-          <line>182</line>
+          <line>278</line>
           <option name="timeStamp" value="12" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/frame/CoordPanel.java</url>
-          <line>185</line>
+          <line>281</line>
           <option name="timeStamp" value="13" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/frame/InfoPanel.java</url>
-          <line>118</line>
-          <option name="timeStamp" value="15" />
+          <line>149</line>
+          <option name="timeStamp" value="18" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-field">
+          <url>file://$PROJECT_DIR$/src/main/java/frame/CoordPanel.java</url>
+          <line>23</line>
+          <properties field="scale" class="frame.CoordPanel" />
+          <option name="timeStamp" value="17" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -20,7 +20,9 @@ public class JsonParser {
             BufferedReader br = new BufferedReader(new FileReader(inputFile));
             Gson gson = new Gson();
             Type type = new TypeToken<JsonData>(){}.getType();
-            return gson.fromJson(br, type);
+            JsonData jsonData = gson.fromJson(br, type);
+            jsonData.stations.stream().forEach(s -> s.stationNumber = jsonData.stations.indexOf(s));
+            return jsonData;
         } catch (Exception e) {
             e.printStackTrace();
             return null;

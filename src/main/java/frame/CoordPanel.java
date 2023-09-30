@@ -115,12 +115,7 @@ public class CoordPanel extends JPanel implements MouseInputListener {
                 // 클릭한 원에 대한 처리 로직 추가
                 focusNode = ap;
                 focusList = MainFrame.findSameNet(ap.getData().get("ssid"));
-//                try {
-//                    MainFrame.infoPanel.setInfo(ap);
-//                    repaint();
-//                }catch(NullPointerException ne) {
-//                    System.out.println(ne.getMessage());
-//                }
+
                 break;
             }
         }

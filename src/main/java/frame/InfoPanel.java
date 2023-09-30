@@ -27,9 +27,8 @@ public class InfoPanel extends JPanel {
     static JButton next = new JButton(">");;
     JButton addThis;
     GridBagConstraints constraintsNet, constraintsTable;
-
+    static boolean buttonCreated = false;
     static JPanel buttonZone;
-    GridBagConstraints btc;
 
     public InfoPanel() {
         setPreferredSize(new Dimension(440, 800));
@@ -86,10 +85,8 @@ public class InfoPanel extends JPanel {
 
         constraintsNet.gridwidth=1;
         constraintsNet.gridy++;
-        add(addThis,constraintsNet);
-        constraintsNet.gridy++;
-        add(change,constraintsNet);
-        constraintsNet.gridx++;
+        add(addThis,constraintsNet);constraintsNet.gridy++;
+        add(change,constraintsNet);constraintsNet.gridx++;
         add(save,constraintsNet);
         setVisible(true);
 
@@ -194,7 +191,7 @@ public class InfoPanel extends JPanel {
                 } else {
                     JLabel label = new JLabel("  "+fieldName);
                     JTextField textField = new JTextField(value.toString());
-                    textField.setEditable(false);
+                    textField.setEditable(true);
 
                     constraintsTable.gridy++;
                     selected.add(label, constraintsTable);
@@ -209,17 +206,20 @@ public class InfoPanel extends JPanel {
             }
         }
 
-        if(obj instanceof Station) {
+        if(obj instanceof Station sta) {
             staPanels.add(selected);
-            staSet.add(selected,String.valueOf(((Station) obj).stationNumber));
+            staSet.add(selected, sta.ssid + sta.stationNumber); // card에서 이름은 ssid+넘버로 구별
             constraintsNet.gridy =4;
             constraintsNet.gridx=0; constraintsNet.gridwidth=3;
             add(staSet, constraintsNet);
-            card.show(staSet, String.valueOf(((Station) obj).stationNumber));
+            card.show(staSet, sta.ssid+sta.stationNumber);
             staSet.revalidate();
-            viewPageNum.setText(String.format("%d/%d",(((Station) obj).stationNumber), (MainFrame.coordPanel.focusList.size()-1)));
+            viewPageNum.setText(String.format("%d/%d",sta.stationNumber, (MainFrame.coordPanel.focusList.size()-1)));
+            buttonZone.revalidate();
         }
-        ButtonPage();
+        if(buttonCreated == false)
+            ButtonPage();
+        buttonCreated=true;
         revalidate(); // 레이아웃 갱신
     }
     //원하는 패널에 재귀 호출 시
@@ -278,7 +278,7 @@ public class InfoPanel extends JPanel {
                 } else {
                     JLabel label = new JLabel("  "+fieldName);
                     JTextField textField = new JTextField(value.toString());
-                    textField.setEditable(false);
+                    textField.setEditable(true);
                     textField.setPreferredSize(new Dimension(150, textField.getPreferredSize().height)); // 너비 고정
 
                     constraintsTable.gridy++;
@@ -326,19 +326,18 @@ public class InfoPanel extends JPanel {
         int current=0;
         if(MainFrame.coordPanel.focusNode != null && MainFrame.coordPanel.focusNode.getClass() == Node_Station.class){
             Node_Station focusNode = (Node_Station) (MainFrame.coordPanel.focusNode);
-            current = focusNode.station.stationNumber;
+            current = getCurrentStaPage();
             viewPageNum = new JLabel(String.format("%d/%d", current, MainFrame.coordPanel.focusList.isEmpty() ? 0 : (MainFrame.coordPanel.focusList.size() - 1)));
         }
 
         return current;
     }
-    //자주 호출되므로
+    //1번만 호출됨
     public void ButtonPage() {
         constraintsNet.gridwidth=3;
-        btc = new GridBagConstraints();
+        GridBagConstraints btc = new GridBagConstraints();
         prev.addActionListener(e -> {
             card.previous(staSet);
-
         });
         next.addActionListener(e -> {
             card.next(staSet);
@@ -358,34 +357,7 @@ public class InfoPanel extends JPanel {
         revalidate();
 
     }
-//    public void setInfo(Node node){
-//        JPanel selected;
-//        GridBagConstraints sc;
-//
-//        //save.addActionListener(e -> node.setData(cngToMap()));
-//
-//        if (node instanceof Node_AP) {
-//            selected = apPanel;
-//            sc = cs;
-//        } else {
-//            selected = staPanel;
-//            sc = cs;
-//        }
-//        selected.removeAll();
-//        selected.revalidate();
-//        for (Map.Entry<String, String> entry : node.getData().entrySet()) {
-//            //System.out.println(c.gridx+ c.gridy);
-//            sc.weightx = 0.01;
-//            sc.weighty = 0.01;
-//            if(entry.getValue() != null) {
-//                sc.gridy++; sc.gridx--;
-//                selected.add(new JLabel(entry.getKey()) {{setBorder(BorderFactory.createDashedBorder(Color.green));}}, sc);
-//                sc.gridx++;
-//                sc.weightx = 0.2;
-//                selected.add(new JTextField(entry.getValue()), sc);
-//
-//            }
-//        }
+
 
 
 }

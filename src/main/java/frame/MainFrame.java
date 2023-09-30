@@ -54,7 +54,7 @@ public class MainFrame extends JFrame{
         setJMenuBar(menuBar);
 
         //테스트용 코드 완성 시 없애기!!!!!
-        String filePath = "/Users/shinyeonggwak/Desktop/test-scenario.json";
+        String filePath = "./src/main/resources/test-scenario.json";
         File selectedFile = new File(filePath);
         JsonData jsonData = JsonParser.parse(selectedFile);
         MainFrame.setJsonData(jsonData);
@@ -105,11 +105,11 @@ public class MainFrame extends JFrame{
         MainFrame.jsonData = jsonData;
         nodeAPList = new ArrayList<>();
         // node_AP 객체를 리스트에 추가
-        for (Network network : MainFrame.getJsonData().networks) {
+        for (Network network : getJsonData().networks) {
             nodeAPList.add(new Node_AP(network));
         }
         nodeStaList = new ArrayList<>();
-        for (Station station : MainFrame.getJsonData().stations) {
+        for (Station station : getJsonData().stations) {
             nodeStaList.add(new Node_Station(station));
         }
 

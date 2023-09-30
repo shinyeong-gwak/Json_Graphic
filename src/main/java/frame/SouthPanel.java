@@ -56,9 +56,8 @@ public class SouthPanel extends JPanel {
         if (MainFrame.jsonPath.getText().isEmpty()) {
             System.out.println("error!");
         }
-        String command = "./ns3 run \"wifi-mlms --config="+ MainFrame.jsonPath +"\"";
         try {
-            Process process = new ProcessBuilder("bash", "-c", command)
+            Process process = new ProcessBuilder("bash", "-c", Command.CMD.get())
                     .directory(null) // 상위 경로에서 실행하도록 설정
                     .start();
 

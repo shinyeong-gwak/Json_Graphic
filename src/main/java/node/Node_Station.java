@@ -45,7 +45,10 @@ public class Node_Station extends Node {
         return stadata;
     }
 
-
+    @Override
+    public Object getObject() {
+        return this.station;
+    }
 
 
 }

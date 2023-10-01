@@ -1,5 +1,8 @@
 package node;
 
+import Json.Network;
+import Json.Station;
+
 import java.awt.*;
 import java.util.Map;
 
@@ -14,6 +17,8 @@ public abstract class Node {
     abstract void drawNode(Graphics2D g, double scale, double oX, double oY);
     public abstract Map<String,String> getData();
     //public abstract void setData(Map<String,String> map);
+    //객체가 ap일지, sta일지 확인하는 메서드
+    public abstract Object getObject();
 
     public String toString() {
         if (this.getData().get("AP") != null) {

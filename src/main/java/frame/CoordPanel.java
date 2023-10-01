@@ -144,8 +144,9 @@ public class CoordPanel extends JPanel implements MouseInputListener {
             for(Node n : focusList) {
                 info.setInfo(n);
             }
-            if(focusNode.getClass() == Node_Station.class)
-                info.card.show(info.staSet,String.valueOf(((Node_Station)focusNode).station.stationNumber));
+            if(focusNode.getClass() == Node_Station.class) {
+                info.card.show(info.staSet, ((Node_Station)focusNode).station.ssid+((Node_Station)focusNode).station.stationNumber);
+            }
             repaint();
         } else {
             System.out.println("why null?");

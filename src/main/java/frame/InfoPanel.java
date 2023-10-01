@@ -4,7 +4,6 @@ import java.awt.*;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import Json.Network;
 import Json.Station;
@@ -86,6 +85,7 @@ public class InfoPanel extends JPanel {
         constraintsNet.gridwidth=1;
         constraintsNet.gridy++;
         add(addThis,constraintsNet);constraintsNet.gridy++;
+        addThis.addActionListener(e -> SaveTheseNodeInData(apPanel));
         add(change,constraintsNet);constraintsNet.gridx++;
         add(save,constraintsNet);
         setVisible(true);
@@ -134,7 +134,7 @@ public class InfoPanel extends JPanel {
         } else if (obj instanceof Station || obj instanceof Node_Station) {
             selected = new JPanel(new GridBagLayout());
             if(obj instanceof Node_Station)
-                obj = ((Node_Station) obj).station;
+                obj = ((Node_Station) obj).getObject();
         }
         // JPanel을 초기화
 
@@ -217,7 +217,7 @@ public class InfoPanel extends JPanel {
             viewPageNum.setText(String.format("%d/%d",sta.stationNumber, (MainFrame.coordPanel.focusList.size()-1)));
             buttonZone.revalidate();
         }
-        if(buttonCreated == false)
+        if(!buttonCreated)
             ButtonPage();
         buttonCreated=true;
         revalidate(); // 레이아웃 갱신
@@ -358,6 +358,69 @@ public class InfoPanel extends JPanel {
 
     }
 
+    public void SaveTheseNodeInData(JPanel nodePanel) {
+        // CoordPanel.focusList를 순회하면서 Node_AP를 찾고 필드를 업데이트합니다.
+        for (Node node : MainFrame.coordPanel.focusList) {
+            if (node instanceof Node_AP) {
+                Node_AP nodeAP = (Node_AP) node;
+                Object networkObject = nodeAP.getObject(); // Node_AP의 'network' 필드 값 가져오기
 
+                // nodePanel 내부의 컴포넌트를 확인하고 라벨과 텍스트 필드를 처리합니다.
+                for (Component component : nodePanel.getComponents()) {
+                    if (component instanceof JLabel) {
+                        JLabel label = (JLabel) component;
+                        String labelText = label.getText().trim(); // 라벨의 텍스트 가져오기
+
+                        if (networkObject != null) {
+                            Field[] fields = networkObject.getClass().getFields();
+                            for (Field field : fields) {
+                                String fieldName = field.getName();
+
+                                // labelText와 public 필드 이름을 비교하여 일치하는 경우 JTextField의 값을 업데이트합니다.
+                                if (labelText.equals(fieldName)) {
+                                    for (Component innerComponent : nodePanel.getComponents()) {
+                                        if (innerComponent instanceof JTextField) {
+                                            JTextField textField = (JTextField) innerComponent;
+
+                                            // JTextField의 값을 업데이트합니다.
+                                            updateNetworkField(networkObject, fieldName, textField.getText());
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        MainFrame.coordPanel.focusList.stream().forEach({
+                node -> {
+                    if(node instanceof Node_AP ap)
+                        System.out.println(ap.network.toString());
+                }
+        } );
+    }
+
+    // networkObject의 필드를 업데이트하는 메서드
+    private void updateNetworkField(Object networkObject, String fieldName, String value) {
+        try {
+            Field field = networkObject.getClass().getField(fieldName);
+
+            // 필드의 데이터 유형에 따라 적절한 변환을 수행하고 값을 설정합니다.
+            if (field.getType() == String.class) {
+                field.set(networkObject, value);
+            } else if (field.getType() == Integer.class || field.getType() == int.class) {
+                int intValue = Integer.parseInt(value);
+                field.set(networkObject, intValue);
+            } else if (field.getType() == Double.class || field.getType() == double.class) {
+                double doubleValue = Double.parseDouble(value);
+                field.set(networkObject, doubleValue);
+            }
+            // 필요한 경우 더 많은 데이터 유형을 처리합니다.
+
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
+    }
 
 }

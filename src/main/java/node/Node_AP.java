@@ -89,5 +89,10 @@ public class Node_AP extends Node {
 
     }
 
+    @Override
+    public Object getObject() {
+        return this.network;
+    }
+
 
 }

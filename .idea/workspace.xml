@@ -2,26 +2,25 @@
 <project version="4">
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
-      <artifact name="JsonGenarater:jar2" />
+      <artifact name="JsonGenarater:jar" />
     </artifacts-to-build>
   </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8c3b646c-4b8a-46a4-b8fc-df703ad44052" name="변경" comment="전체&#10;구현 내용&#10;- 그래프 면 정리, 2배 확대 방법 결정 중&#10;- run 버튼 구현 테스트 단계&#10;- json 그래픽에서 바꾸고 저장하는 메서드 구현 중&#10;- 경로 설정 생각해야함.&#10;- 비율이나 레이아웃 정리">
-      <change afterPath="$PROJECT_DIR$/src/main/java/frame/Command.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/test-scenario.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="8c3b646c-4b8a-46a4-b8fc-df703ad44052" name="변경" comment="전체&#10;구현 내용&#10;- 저장 구조 변경중&#10;- save change 버튼 동작 구현중&#10;- 레이아웃...">
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/JsonGenarater_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/JsonGenarater_jar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/JsonGenarater_jar2.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/frame/Command.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frame/Command.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/frame/CoordPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frame/CoordPanel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/frame/InfoPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frame/InfoPanel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/frame/MainFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frame/MainFrame.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/frame/SouthPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frame/SouthPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/node/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/node/Node.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/node/Node_AP.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/node/Node_AP.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/node/Node_Station.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/node/Node_Station.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/test-scenario.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/test-scenario-7.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/frame/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/frame/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,24 +34,24 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
-        <option value="Class" />
         <option value="Enum" />
+        <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "history": [
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;history&quot;: [
     {
-      "state": "CLOSED"
+      &quot;state&quot;: &quot;CLOSED&quot;
     }
   ],
-  "lastFilter": {
-    "state": "CLOSED"
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;CLOSED&quot;
   }
-}]]></component>
+}</component>
   <component name="GithubPullRequestsUISettings">
     <option name="selectedUrlAndAccountId">
       <UrlAndAccount>
@@ -80,36 +79,36 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Downloaded.Files.Path&quot;: &quot;/Users/shinyeonggwak/IdeaProjects/JsonGenarater&quot;,
-    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/gwaks/IdeaProjects/Json_Graphic/src/main/resources&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;프로젝트&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.projectsettings.compiler.javacompiler&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Downloaded.Files.Path": "/Users/shinyeonggwak/IdeaProjects/JsonGenarater",
+    "Downloaded.Files.Path.Enabled": "false",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "C:/Users/gwaks/IdeaProjects/Json_Graphic/src/main/resources",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "아티팩트",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "reference.projectsettings.compiler.javacompiler",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;ChangesTree.GroupingKeys&quot;: [
-      &quot;module&quot;
+  "keyToStringList": {
+    "ChangesTree.GroupingKeys": [
+      "module"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="Json" />
@@ -118,7 +117,7 @@
       <recent name="C:\Users\gwaks\IdeaProjects\Json_Graphic\src\main\resources" />
     </key>
   </component>
-  <component name="RunManager" selected="애플리케이션.MainFrame">
+  <component name="RunManager" selected="JAR 애플리케이션.execute">
     <configuration name="Main (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="frame.Main" />
       <module name="JsonGenarater" />
@@ -210,11 +209,43 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="tmpInfoPanel" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="frame.tmpInfoPanel" />
+      <module name="JsonGenarater" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="frame.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="execute" type="JarApplication">
+      <option name="JAR_PATH" value="$PROJECT_DIR$/out/artifacts/JsonGenarater_jar/JsonGenarater.jar" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <method v="2">
+        <option name="BuildArtifacts" enabled="true">
+          <artifact name="JsonGenarater:jar" />
+        </option>
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="JAR 애플리케이션.execute" />
+      <item itemvalue="애플리케이션.Main" />
+      <item itemvalue="애플리케이션.Main (1)" />
+      <item itemvalue="애플리케이션.MainFrame" />
+      <item itemvalue="애플리케이션.ObjectFieldDisplayer" />
+      <item itemvalue="애플리케이션.tmpInfoPanel" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="애플리케이션.MainFrame" />
-        <item itemvalue="애플리케이션.ObjectFieldDisplayer" />
         <item itemvalue="애플리케이션.Main" />
+        <item itemvalue="애플리케이션.tmpInfoPanel" />
+        <item itemvalue="애플리케이션.ObjectFieldDisplayer" />
         <item itemvalue="애플리케이션.Main (1)" />
       </list>
     </recent_temporary>
@@ -265,6 +296,16 @@
       <workItem from="1695797466134" duration="700000" />
       <workItem from="1695887345858" duration="4000" />
       <workItem from="1696095446847" duration="5351000" />
+      <workItem from="1696483658500" duration="1228000" />
+      <workItem from="1696844347195" duration="599000" />
+      <workItem from="1696909106496" duration="1240000" />
+      <workItem from="1697017011158" duration="2000" />
+      <workItem from="1697587916642" duration="8121000" />
+      <workItem from="1697772124817" duration="1000" />
+      <workItem from="1699432052954" duration="609000" />
+      <workItem from="1699539167852" duration="3000" />
+      <workItem from="1700021129269" duration="267000" />
+      <workItem from="1700363382241" duration="15387000" />
     </task>
     <task id="LOCAL-00001" summary="전체&#10;구현 내용&#10;- open : json 파일 불러와 그래프에 그리기&#10;- 노드를 누르면 노드 정보가 info panel에 생성&#10;- 좌표 2배 버튼 누르면 확대&#10;- 클릭한 노드와 같은 ssid를 가지고 있는 노드 포커스 생성">
       <created>1685924230619</created>
@@ -301,7 +342,14 @@
       <option name="project" value="LOCAL" />
       <updated>1692596420822</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="전체&#10;구현 내용&#10;- 저장 구조 변경중&#10;- save change 버튼 동작 구현중&#10;- 레이아웃...">
+      <created>1696152527822</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1696152527822</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -322,24 +370,25 @@
     <MESSAGE value="전체&#10;구현 내용&#10;- open : json 파일 불러와 그래프에 그리기&#10;- 노드를 누르면 노드 정보가 info panel에 생성&#10;- 좌표 2배 버튼 누르면 확대&#10;- 클릭한 노드와 같은 ssid를 가지고 있는 노드 포커스 생성" />
     <MESSAGE value="전체&#10;구현 내용&#10;- 그래프 면 정리, 2배 확대 방법 결정 중&#10;- json파일 경로 불러오기, report 저장할 경로 불러오기, run 버튼 구현 중&#10;- 노드 클래스 각자가 자신의 위치 정보, 네트워크 정보를 가질 수 있도록 수정" />
     <MESSAGE value="전체&#10;구현 내용&#10;- 그래프 면 정리, 2배 확대 방법 결정 중&#10;- run 버튼 구현 테스트 단계&#10;- json 그래픽에서 바꾸고 저장하는 메서드 구현 중&#10;- 경로 설정 생각해야함.&#10;- 비율이나 레이아웃 정리" />
-    <option name="LAST_COMMIT_MESSAGE" value="전체&#10;구현 내용&#10;- 그래프 면 정리, 2배 확대 방법 결정 중&#10;- run 버튼 구현 테스트 단계&#10;- json 그래픽에서 바꾸고 저장하는 메서드 구현 중&#10;- 경로 설정 생각해야함.&#10;- 비율이나 레이아웃 정리" />
+    <MESSAGE value="전체&#10;구현 내용&#10;- 저장 구조 변경중&#10;- save change 버튼 동작 구현중&#10;- 레이아웃..." />
+    <option name="LAST_COMMIT_MESSAGE" value="전체&#10;구현 내용&#10;- 저장 구조 변경중&#10;- save change 버튼 동작 구현중&#10;- 레이아웃..." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/frame/CoordPanel.java</url>
-          <line>274</line>
+          <line>275</line>
           <option name="timeStamp" value="12" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/frame/CoordPanel.java</url>
-          <line>277</line>
+          <line>278</line>
           <option name="timeStamp" value="13" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/frame/InfoPanel.java</url>
-          <line>217</line>
+          <line>218</line>
           <option name="timeStamp" value="19" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">

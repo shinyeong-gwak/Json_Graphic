@@ -54,7 +54,7 @@ public class InfoPanel extends JPanel {
         //**staSet.add(staPanel);
 
         add(new JLabel(""), constraintsNet);
-        add(new JLabel("-AP-") {{setBorder(BorderFactory.createDashedBorder(Color.green));}}, constraintsNet);
+        add(new JLabel("-AP-"), constraintsNet);
         constraintsNet.gridy++;//1
         constraintsNet.weighty = 0.3;
         add(apPanel, constraintsNet);
@@ -77,22 +77,23 @@ public class InfoPanel extends JPanel {
         constraintsNet.gridy = 5;
         add(buttonZone,constraintsNet);
 
-        change = new JButton("change NetSet");
+        change = new JButton("change NetSetting");
         change.addActionListener(e -> changeSetting(apPanel));
         save = new JButton("save Json");
         addThis = new JButton("add this Station");
 
         constraintsNet.gridwidth=1;
         constraintsNet.gridy++;
-        add(addThis,constraintsNet);constraintsNet.gridy++;
+        buttonZone.add(addThis,constraintsNet);constraintsNet.gridy++;
         addThis.addActionListener(e -> SaveTheseNodeInData(apPanel));
-        add(change,constraintsNet);constraintsNet.gridx++;
-        add(save,constraintsNet);
+        buttonZone.add(change,constraintsNet);constraintsNet.gridx++;
+        buttonZone.add(save,constraintsNet);
         setVisible(true);
 
     }
 
     private void changeSetting(JPanel apPanel) {
+
 
     }
 
@@ -217,9 +218,10 @@ public class InfoPanel extends JPanel {
             viewPageNum.setText(String.format("%d/%d",sta.stationNumber, (MainFrame.coordPanel.focusList.size()-1)));
             buttonZone.revalidate();
         }
-        if(!buttonCreated)
+        if(!buttonCreated) {
             ButtonPage();
-        buttonCreated=true;
+            buttonCreated = true;
+        }
         revalidate(); // 레이아웃 갱신
     }
     //원하는 패널에 재귀 호출 시
@@ -298,6 +300,7 @@ public class InfoPanel extends JPanel {
     }
     private JTextField displayArrayElement(String fieldName,GridBagConstraints gbc, Object arrayItem, int index, JPanel field) {
         JTextField val = new JTextField(arrayItem.toString(),3);
+        val.setEditable(true);
 
         JLabel text;
 
@@ -346,7 +349,7 @@ public class InfoPanel extends JPanel {
         buttonZone.add( new JPanel() {
             {
                 try {
-                    add(viewPageNum);
+                    //add(viewPageNum);
                 } catch (NullPointerException ignored){};
                 add(prev);
                 add(next);
@@ -381,6 +384,7 @@ public class InfoPanel extends JPanel {
                                     for (Component innerComponent : nodePanel.getComponents()) {
                                         if (innerComponent instanceof JTextField) {
                                             JTextField textField = (JTextField) innerComponent;
+                                            textField.setEditable(true);
 
                                             // JTextField의 값을 업데이트합니다.
                                             updateNetworkField(networkObject, fieldName, textField.getText());
@@ -393,12 +397,12 @@ public class InfoPanel extends JPanel {
                 }
             }
         }
-        MainFrame.coordPanel.focusList.stream().forEach({
-                node -> {
-                    if(node instanceof Node_AP ap)
-                        System.out.println(ap.network.toString());
-                }
-        } );
+//        MainFrame.coordPanel.focusList.stream().forEach({
+//                node -> {
+//                    if(node instanceof Node_AP ap)
+//                        System.out.println(ap.network.toString());
+//                }
+//        } );
     }
 
     // networkObject의 필드를 업데이트하는 메서드
@@ -419,6 +423,59 @@ public class InfoPanel extends JPanel {
             // 필요한 경우 더 많은 데이터 유형을 처리합니다.
 
         } catch (NoSuchFieldException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
+    }
+    private void updateObjectFromUI(Object obj, JPanel parent) {
+        // 패널 내의 모든 컴포넌트를 검사
+        for (Component component : parent.getComponents()) {
+            if (component instanceof JLabel) {
+                JLabel label = (JLabel) component;
+                String labelText = label.getText().trim();
+
+                // JLabel의 텍스트를 기반으로 필드를 찾음
+                Field field = findFieldInObject(obj, labelText);
+
+                if (field != null) {
+                    for (Component innerComponent : parent.getComponents()) {
+                        if (innerComponent instanceof JTextField) {
+                            JTextField textField = (JTextField) innerComponent;
+                            textField.setEditable(true);
+                            // JTextField의 값을 해당 필드에 설정
+                            setFieldInObject(obj, field, textField.getText());
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    private Field findFieldInObject(Object obj, String fieldName) {
+        Field[] fields = obj.getClass().getDeclaredFields();
+        for (Field field : fields) {
+            if (field.getName().equals(fieldName)) {
+                return field;
+            }
+        }
+        return null; // 해당 필드를 찾지 못한 경우
+    }
+
+    private void setFieldInObject(Object obj, Field field, String value) {
+        field.setAccessible(true);
+        Class<?> fieldType = field.getType();
+
+        try {
+            if (fieldType == String.class) {
+                field.set(obj, value);
+            } else if (fieldType == Integer.class || fieldType == int.class) {
+                int intValue = Integer.parseInt(value);
+                field.set(obj, intValue);
+            } else if (fieldType == Double.class || fieldType == double.class) {
+                double doubleValue = Double.parseDouble(value);
+                field.set(obj, doubleValue);
+            }
+            // 필요한 경우 다른 데이터 유형을 처리합니다.
+        } catch (IllegalAccessException | NumberFormatException e) {
             e.printStackTrace();
         }
     }

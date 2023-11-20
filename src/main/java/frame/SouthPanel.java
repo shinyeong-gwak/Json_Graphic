@@ -4,10 +4,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
+
+import static frame.MainFrame.jsonPath;
 
 public class SouthPanel extends JPanel {
     public SouthPanel() {
@@ -52,33 +51,45 @@ public class SouthPanel extends JPanel {
         // You can add any additional components here
     }
     private String setNRun() {
-
-        if (MainFrame.jsonPath.getText().isEmpty()) {
-            System.out.println("error!");
-        }
         try {
-            Process process = new ProcessBuilder("bash", "-c", Command.CMD.get())
-                    .directory(null) // 상위 경로에서 실행하도록 설정
-                    .start();
+            // 실행할 명령어 및 작업 디렉토리 설정
+            String command = "~/ns-allinone-3.40/ns-3.40/ns3 run \"wifi-mlms --config="+jsonPath.getText()+"\"";
+            String workingDirectory = "";
 
-            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-            StringBuilder output = new StringBuilder();
-            String line;
-            while ((line = reader.readLine()) != null) {
-                output.append(line).append("\n");
-            }
+            // 프로세스 빌더 생성
+            ProcessBuilder processBuilder = new ProcessBuilder(command.split(" "));
+            //processBuilder.directory(new java.io.File(workingDirectory));
+
+            // 프로세스 실행
+            Process process = processBuilder.start();
+
+            // 프로세스의 출력을 읽어오기 위한 InputStream
+            InputStream inputStream = process.getInputStream();
+            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
 
             int exitCode = process.waitFor();
-            if (exitCode == 0) {
-                return output.toString();
-            } else {
-                return "Error executing command.";
+            // 프로세스의 출력을 읽어옴
+            String line;
+            StringBuilder output= new StringBuilder();
+            while ((line = reader.readLine()) != null) {
+                System.out.println(line);
+                output.append(line);
+                // 여기에서 필요한 작업을 수행
             }
+
+            // 프로세스가 끝날 때까지 대기
+
+            System.out.println("프로세스 종료 코드: " + exitCode);
+
+            // 리소스 정리
+            reader.close();
+            inputStream.close();
+
+            return output.toString();
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
-            return "Exception occurred: " + e.getMessage();
+            return "오류";
         }
-
     }
     private void showResultInNewWindow(String result) {
         JFrame newFrame = new JFrame("Command Result");

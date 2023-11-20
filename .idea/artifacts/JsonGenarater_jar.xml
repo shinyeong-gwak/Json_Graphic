@@ -4,6 +4,8 @@
     <root id="archive" name="JsonGenarater.jar">
       <element id="module-output" name="JsonGenarater" />
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/google/code/gson/gson/2.10.1/gson-2.10.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/jcraft/jsch/0.1.55/jsch-0.1.55.jar" path-in-jar="/" />
+      <element id="library" level="project" name="Maven: com.jcraft:jsch-logger:0.1.55" />
     </root>
   </artifact>
 </component>

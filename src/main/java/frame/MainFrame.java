@@ -54,26 +54,26 @@ public class MainFrame extends JFrame{
         setJMenuBar(menuBar);
 
         //테스트용 코드 완성 시 없애기!!!!!
-        String filePath = "./src/main/resources/test-scenario.json";
-        File selectedFile = new File(filePath);
-        JsonData jsonData = JsonParser.parse(selectedFile);
-        MainFrame.setJsonData(jsonData);
-        MainFrame.jsonPath.setText(filePath);
+//        String filePath = "";
+//        File selectedFile = new File(filePath);
+//        JsonData jsonData = JsonParser.parse(selectedFile);
+//        MainFrame.setJsonData(jsonData);
+//        MainFrame.jsonPath.setText(filePath);
         //테스트 완료 시 해제
 
-//        addWindowListener(new WindowAdapter() {
-//            @Override
-//            public void windowStateChanged(WindowEvent e) {
-//                if (e.getNewState() == Frame.MAXIMIZED_BOTH) {
-//                    Dimension newSize = new Dimension(getWidth()-infoPanel.getWidth()-40, getHeight());
-//                    coordScroll.setPreferredSize(newSize);
-//                    coordScroll.revalidate();
-//                } else if (e.getNewState() == Frame.NORMAL) {
-//                    Dimension newSize = new Dimension(getWidth()/2-40, getHeight());
-//                    coordScroll.setPreferredSize(newSize);
-//                }
-//            }
-//        });
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowStateChanged(WindowEvent e) {
+                if (e.getNewState() == Frame.MAXIMIZED_BOTH) {
+                    Dimension newSize = new Dimension(getWidth()-infoPanel.getWidth()-40, getHeight());
+                    coordScroll.setPreferredSize(newSize);
+                    coordScroll.revalidate();
+                } else if (e.getNewState() == Frame.NORMAL) {
+                    Dimension newSize = new Dimension(getWidth()/2-40, getHeight());
+                    coordScroll.setPreferredSize(newSize);
+                }
+            }
+        });
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frameDim = new Dimension(1000,800);
@@ -88,6 +88,7 @@ public class MainFrame extends JFrame{
 
     public static Dimension frameDim;
     private static JsonData jsonData; // 추 후 여러 개로 변환 가능성
+    public static JsonData newJson;
     public static JPanel contentPane;
     public static JMenuBar menuBar;
     public static CoordPanel coordPanel;

@@ -4,6 +4,7 @@ import java.awt.*;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 import Json.Network;
 import Json.Station;
@@ -37,6 +38,7 @@ public class InfoPanel extends JPanel {
         //apSet = new JPanel(new CardLayout());
 
         apPanel = new JPanel(new GridBagLayout() );
+
         //카드로 바꾸기 - 누르면 해당 카드에 해당하는 sta 카드 페이지와 ap 포커스
         staSet = new JPanel(card = new CardLayout());
         
@@ -66,15 +68,17 @@ public class InfoPanel extends JPanel {
         constraintsNet.gridy++;//3
 
         add(new JLabel("-Station-"), constraintsNet);
-        //constraintsNet.gridy++;//4
+        constraintsNet.gridy++;//4
         constraintsNet.weighty = 0.4;
         constraintsNet.anchor =GridBagConstraints.SOUTHWEST;
 
         constraintsNet.gridx=0;
-        add(staSet,constraintsNet);
+        JPanel bottomPanel = new JPanel();
+        add(bottomPanel,constraintsNet);
+        bottomPanel.add(staSet,constraintsNet);
 
         buttonZone = new JPanel(new GridBagLayout());
-        constraintsNet.gridy = 5;
+        constraintsNet.gridy+=3;
         add(buttonZone,constraintsNet);
 
         change = new JButton("change NetSetting");
@@ -143,7 +147,7 @@ public class InfoPanel extends JPanel {
         Field[] fields = clazz.getDeclaredFields();
 
         constraintsTable.anchor = GridBagConstraints.WEST;
-
+        int numAPapp=0;
         for (Field field : fields) {
             field.setAccessible(true);
             String fieldName = field.getName();
@@ -152,6 +156,34 @@ public class InfoPanel extends JPanel {
                 Object value = field.get(obj);
                 if (value instanceof List<?>) {
                     // List 객체인 경우
+                    if(fieldName.contains("AP_applications")){
+                        JButton apButton = new JButton(++numAPapp+"AP application");
+                        constraintsTable.gridy++;
+                        selected.add(apButton,constraintsTable);
+                        JPanel panel = new JPanel(new GridBagLayout());
+                        constraintsTable.gridy++; constraintsTable.gridwidth=2;
+                        selected.add(panel,constraintsTable);
+                        constraintsTable.gridwidth=1;
+                        AtomicBoolean created = new AtomicBoolean(false);
+                        apButton.addActionListener(e -> {
+                            apButton.setEnabled(false);
+                            panel.setVisible(true);
+                            if(!created.get()) {
+                                JButton exit = new JButton("x");
+                                panel.add(exit);
+                                exit.addActionListener(e1 -> {
+                                    panel.setVisible(false);
+                                    created.set(true);
+                                    apButton.setEnabled(true);
+                                });
+                                for(Object listItem :(List<?>) value) {
+                                    setInfo(listItem,panel,"");
+                                }
+                            }
+
+                        });
+                        continue;
+                    }
                     List<?> list = (List<?>) value;
                     int i =0;
                     for (Object listItem : list) {
@@ -187,7 +219,7 @@ public class InfoPanel extends JPanel {
                     // 내부 클래스인 경우
                     constraintsTable.gridy++;
                     String msg = "   " + fieldName + ".";
-                    setInfo(value,selected,msg);
+                    setInfo(value, selected, msg);
                     // 재귀 호출
                 } else {
                     JLabel label = new JLabel("  "+fieldName);
@@ -210,7 +242,7 @@ public class InfoPanel extends JPanel {
         if(obj instanceof Station sta) {
             staPanels.add(selected);
             staSet.add(selected, sta.ssid + sta.stationNumber); // card에서 이름은 ssid+넘버로 구별
-            constraintsNet.gridy =4;
+            constraintsNet.gridy+=2;
             constraintsNet.gridx=0; constraintsNet.gridwidth=3;
             add(staSet, constraintsNet);
             card.show(staSet, sta.ssid+sta.stationNumber);

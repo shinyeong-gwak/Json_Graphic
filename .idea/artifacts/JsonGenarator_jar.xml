@@ -1,0 +1,11 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="JsonGenarator:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/JsonGenarator_jar</output-path>
+    <root id="archive" name="JsonGenarator.jar">
+      <element id="module-output" name="JsonGenarator" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/google/code/gson/gson/2.10.1/gson-2.10.1.jar" path-in-jar="/" />
+      <element id="library" level="project" name="Maven: com.jcraft:jsch-logger:0.1.55" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/jcraft/jsch/0.1.55/jsch-0.1.55.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

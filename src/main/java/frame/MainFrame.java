@@ -28,8 +28,8 @@ public class MainFrame extends JFrame{
         contentPane = new JPanel(new BorderLayout());
 
         infoPanel = new InfoPanel();
-        JScrollPane scrollPane = new JScrollPane(infoPanel) {{setPreferredSize(new Dimension(480,700));}};
-        scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        JScrollPane scrollPane = new JScrollPane(infoPanel) {{setPreferredSize(new Dimension(480,3000));}};
+        scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
 
         coordPanel = new CoordPanel();
         northPanel = new NorthPanel();

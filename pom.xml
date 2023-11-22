@@ -20,7 +20,7 @@
     </build>
 
     <groupId>org.example</groupId>
-    <artifactId>JsonGenarater</artifactId>
+    <artifactId>JsonGenarator</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <dependencies>

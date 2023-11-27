@@ -80,18 +80,18 @@ public class InfoPanel extends JPanel {
         buttonZone = new JPanel(new GridBagLayout());
         constraintsNet.gridy+=3;
         add(buttonZone,constraintsNet);
-
-        change = new JButton("change NetSetting");
-        change.addActionListener(e -> changeSetting(apPanel));
-        save = new JButton("save Json");
-        addThis = new JButton("add this Station");
+// 일단 사용도 못하는거 빼놔!!!
+//        change = new JButton("change NetSetting");
+//        change.addActionListener(e -> changeSetting(apPanel));
+//        save = new JButton("save Json");
+//        addThis = new JButton("add this Station");
 
         constraintsNet.gridwidth=1;
         constraintsNet.gridy++;
-        buttonZone.add(addThis,constraintsNet);constraintsNet.gridy++;
-        addThis.addActionListener(e -> SaveTheseNodeInData(apPanel));
-        buttonZone.add(change,constraintsNet);constraintsNet.gridx++;
-        buttonZone.add(save,constraintsNet);
+        //buttonZone.add(addThis,constraintsNet);constraintsNet.gridy++;
+        //addThis.addActionListener(e -> SaveTheseNodeInData(apPanel));
+        //buttonZone.add(change,constraintsNet);constraintsNet.gridx++;
+        //buttonZone.add(save,constraintsNet);
         setVisible(true);
 
     }

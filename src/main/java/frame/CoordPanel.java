@@ -1,5 +1,6 @@
 package frame;
 
+import Json.Region;
 import node.*;
 //import sun.awt.PlatformGraphicsInfo;
 
@@ -93,9 +94,32 @@ public class CoordPanel extends JPanel implements MouseInputListener {
                 station.drawNode(g2d,scale,offsetX,offsetY);
 
             }
+
+            //랜덤 부분 처리하기 위해...
+            if(MainFrame.getJsonData().regions != null) {
+                List<Region> regions = MainFrame.getJsonData().regions;
+
+                for(Region r : regions) {
+                    String regionName = r.name;
+                    setSquare(g,regionName, r.xMin,r.xMax,r.yMin,r.yMax);
+                }
+            }
         }
 
         highlight(g,mouseX,mouseY,5*scale+3);
+    }
+
+    private void setSquare(Graphics g,String regionName, int minX, int maxX, int minY, int maxY) {
+        g.setColor(Color.green);
+        minX = (int) (minX*scale + offsetX - 3*scale);
+        maxX = (int) (maxX*scale + offsetX + 3*scale);
+        minY = (int) (minY*scale + offsetY - 3*scale);
+        maxY = (int) (maxY*scale + offsetY + 3*scale);
+        g.drawLine(minX,minY,maxX,minY);
+        g.drawLine(maxX,minY,maxX,maxY);
+        g.drawLine(maxX,maxY,minX,maxY);
+        g.drawLine(minX,maxY,minX,minY);
+        g.drawString(regionName,minX,maxY+10);
     }
 
     @Override
@@ -225,25 +249,25 @@ public class CoordPanel extends JPanel implements MouseInputListener {
     }
 
     private void createSideBox(Vector<Node> nodes, double x, double y) {
-        sameLocListPanel = new JList<>(nodes);
-
-        sameLocListPanel.addListSelectionListener(e -> {
-            focusList.clear();
-            focusList = MainFrame.findSameNet(sameLocListPanel.getSelectedValue().getData().get("ssid"));
-            MainFrame.infoPanel.setInfo(sameLocListPanel.getSelectedValue());
-            sameLocListPanel.setVisible(false);
-            repaint();
-        });
-
-        sameLocListPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
-        sameLocListPanel.setBackground(new Color(230,230,230,0));
-        sameLocListPanel.setFont(new Font("Calibri",Font.BOLD,5));
-        sameLocListPanel.setSize(new Dimension(150,10*nodes.size()));
-        sameLocListPanel.setLocation((int) (x+10.0),(int) y);
-
-        add(sameLocListPanel);
-
-        repaint();
+//        sameLocListPanel = new JList<>(nodes);
+//
+//        sameLocListPanel.addListSelectionListener(e -> {
+//            focusList.clear();
+//            focusList = MainFrame.findSameNet(sameLocListPanel.getSelectedValue().getData().get("ssid"));
+//            MainFrame.infoPanel.setInfo(sameLocListPanel.getSelectedValue());
+//            sameLocListPanel.setVisible(false);
+//            repaint();
+//        });
+//
+//        sameLocListPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+//        sameLocListPanel.setBackground(new Color(230,230,230,0));
+//        sameLocListPanel.setFont(new Font("Calibri",Font.BOLD,5));
+//        sameLocListPanel.setSize(new Dimension(150,10*nodes.size()));
+//        sameLocListPanel.setLocation((int) (x+10.0),(int) y);
+//
+//        add(sameLocListPanel);
+//
+//        repaint();
     }
 
 

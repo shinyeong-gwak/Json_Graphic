@@ -5,6 +5,7 @@ public class Station {
     public String ssid;
     public String band;
     public double[] location;
+    //public boolean randomLocation;
     public Application application;
 
     public int getStationNumber() {

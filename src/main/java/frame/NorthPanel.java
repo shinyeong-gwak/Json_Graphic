@@ -1,5 +1,7 @@
 package frame;
 
+import com.sun.tools.javac.Main;
+
 import javax.swing.*;
 import java.awt.*;
 import java.io.BufferedReader;
@@ -7,6 +9,7 @@ import java.io.FileReader;
 import java.io.IOException;
 
 import static frame.MainFrame.coordPanel;
+import static frame.MainFrame.simTime;
 
 public class NorthPanel extends JPanel {
     public NorthPanel() {
@@ -21,6 +24,7 @@ public class NorthPanel extends JPanel {
         add(MainFrame.jsonPath,c);
         c.gridx++; c.weightx = 0.01;
         MainFrame.viewRaw = new JButton("view");
+
         MainFrame.viewRaw.addActionListener(e -> {
             if(MainFrame.jsonPath.getText().endsWith(".json")) {
                 JFrame dataFrame = new JFrame();
@@ -46,6 +50,15 @@ public class NorthPanel extends JPanel {
             }
         });
         add(MainFrame.viewRaw,c);
+        c.gridy++; c.gridx = 1;
+        simTime = new JLabel("Simulation Time : ");
+        if(MainFrame.isSetJson){
+            simTime.setText(simTime.getText()+MainFrame.getJsonData().simulationTime);
+        }
+        add(simTime, c);
+        c.gridy--;
+
+
         c.gridx++; c.weightx = 0.6;
         add(new JLabel(" "),c);
         c.gridx = 6; c.weightx = 0.1;

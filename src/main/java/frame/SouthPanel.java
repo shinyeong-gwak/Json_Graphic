@@ -47,7 +47,6 @@ public class SouthPanel extends JPanel {
         add(path,c);
         c.gridx++;
         add(run,c);
-
         // You can add any additional components here
     }
     private String setNRun() {

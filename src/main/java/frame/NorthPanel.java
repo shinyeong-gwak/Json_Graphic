@@ -21,6 +21,7 @@ public class NorthPanel extends JPanel {
 
         add(new JLabel("json 경로 : "),c);
         c.gridx = 2;c.weightx = 1;
+        MainFrame.jsonPath.setEditable(false);
         add(MainFrame.jsonPath,c);
         c.gridx++; c.weightx = 0.01;
         MainFrame.viewRaw = new JButton("view");

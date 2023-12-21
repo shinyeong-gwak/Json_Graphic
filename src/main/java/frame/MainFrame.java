@@ -35,8 +35,8 @@ public class MainFrame extends JFrame{
         northPanel = new NorthPanel();
         southPanel = new SouthPanel();
 
-        setFocusableWindowState(false);
-        setLocationRelativeTo(coordPanel);
+
+
         JScrollPane coordScroll = new JScrollPane(coordPanel) {{setPreferredSize(new Dimension(500,700));}};
         contentPane.add(coordScroll, BorderLayout.EAST);
         contentPane.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
@@ -49,6 +49,7 @@ public class MainFrame extends JFrame{
 
         contentPane.add(southPanel, BorderLayout.SOUTH);
         contentPane.add(northPanel, BorderLayout.NORTH);
+
 
         add(contentPane);
         setJMenuBar(menuBar);

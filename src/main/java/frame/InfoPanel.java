@@ -3,7 +3,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import Json.Network;
@@ -18,6 +20,7 @@ public class InfoPanel extends JPanel {
     CardLayout card;
     JPanel staSet;
     String showingSta;
+    Map<String,JTextField> objectMap = new HashMap<>();
 
     List<JPanel> staPanels = new ArrayList<>();
     static JButton save;
@@ -36,6 +39,7 @@ public class InfoPanel extends JPanel {
         setBorder(BorderFactory.createDashedBorder(Color.gray));
 
         //apSet = new JPanel(new CardLayout());
+
 
         apPanel = new JPanel(new GridBagLayout() );
 
@@ -157,10 +161,10 @@ public class InfoPanel extends JPanel {
                 if (value instanceof List<?>) {
                     // List 객체인 경우
                     if(fieldName.contains("AP_applications")){
-                        JButton apButton = new JButton(++numAPapp+"AP application");
+                        JButton apButton = new JButton(++numAPapp+" AP application");
                         constraintsTable.gridy++;
                         selected.add(apButton,constraintsTable);
-                        JPanel panel = new JPanel(new GridBagLayout());
+                        JPanel panel = new JPanel(new GridBagLayout()); //여기서 application 탭 초기화
                         constraintsTable.gridy++; constraintsTable.gridwidth=2;
                         selected.add(panel,constraintsTable);
                         constraintsTable.gridwidth=1;
@@ -226,11 +230,12 @@ public class InfoPanel extends JPanel {
                     JTextField textField = new JTextField(value.toString());
                     textField.setEditable(true);
 
+                    objectMap.put(fieldName,textField);
                     constraintsTable.gridy++;
                     selected.add(label, constraintsTable);
 
                     constraintsTable.gridx = 1;
-                    selected.add(textField, constraintsTable);
+                    selected.add(objectMap.get(fieldName), constraintsTable);
 
                     constraintsTable.gridx = 0;
                 }
@@ -311,15 +316,17 @@ public class InfoPanel extends JPanel {
                     // 재귀 호출
                 } else {
                     JLabel label = new JLabel("  "+fieldName);
-                    JTextField textField = new JTextField(value.toString());
+                    JTextField textField = new JTextField(value.toString(),30);
                     textField.setEditable(true);
+
+                    objectMap.put(fieldName,textField);
                     textField.setPreferredSize(new Dimension(150, textField.getPreferredSize().height)); // 너비 고정
 
                     constraintsTable.gridy++;
                     parent.add(label, constraintsTable);
 
                     constraintsTable.gridx = 1;
-                    parent.add(textField, constraintsTable);
+                    parent.add(objectMap.get(fieldName), constraintsTable);
 
                     constraintsTable.gridx = 0;
                 }
@@ -400,7 +407,7 @@ public class InfoPanel extends JPanel {
                 Node_AP nodeAP = (Node_AP) node;
                 Object networkObject = nodeAP.getObject(); // Node_AP의 'network' 필드 값 가져오기
 
-                // nodePanel 내부의 컴포넌트를 확인하고 라벨과 텍스트 필드를 처리합니다.
+                // nodePanel 내부의 컴포넌트를 확인하고 라벨과 텍스트 필드를 처리
                 for (Component component : nodePanel.getComponents()) {
                     if (component instanceof JLabel) {
                         JLabel label = (JLabel) component;
@@ -411,14 +418,14 @@ public class InfoPanel extends JPanel {
                             for (Field field : fields) {
                                 String fieldName = field.getName();
 
-                                // labelText와 public 필드 이름을 비교하여 일치하는 경우 JTextField의 값을 업데이트합니다.
+                                // labelText와 public 필드 이름을 비교하여 일치하는 경우 JTextField의 값을 업데이트.
                                 if (labelText.equals(fieldName)) {
                                     for (Component innerComponent : nodePanel.getComponents()) {
                                         if (innerComponent instanceof JTextField) {
                                             JTextField textField = (JTextField) innerComponent;
                                             textField.setEditable(true);
 
-                                            // JTextField의 값을 업데이트합니다.
+                                            // JTextField의 값
                                             updateNetworkField(networkObject, fieldName, textField.getText());
                                         }
                                     }
@@ -442,7 +449,7 @@ public class InfoPanel extends JPanel {
         try {
             Field field = networkObject.getClass().getField(fieldName);
 
-            // 필드의 데이터 유형에 따라 적절한 변환을 수행하고 값을 설정합니다.
+            // 필드의 데이터 유형에 따라 적절한 변환을 수행하고 값을 설정
             if (field.getType() == String.class) {
                 field.set(networkObject, value);
             } else if (field.getType() == Integer.class || field.getType() == int.class) {
@@ -452,7 +459,7 @@ public class InfoPanel extends JPanel {
                 double doubleValue = Double.parseDouble(value);
                 field.set(networkObject, doubleValue);
             }
-            // 필요한 경우 더 많은 데이터 유형을 처리합니다.
+            // 필요한 경우 더 많은 데이터 유형을 처리
 
         } catch (NoSuchFieldException | IllegalAccessException e) {
             e.printStackTrace();
@@ -506,7 +513,7 @@ public class InfoPanel extends JPanel {
                 double doubleValue = Double.parseDouble(value);
                 field.set(obj, doubleValue);
             }
-            // 필요한 경우 다른 데이터 유형을 처리합니다.
+            // 필요한 경우 다른 데이터 유형을 처리
         } catch (IllegalAccessException | NumberFormatException e) {
             e.printStackTrace();
         }

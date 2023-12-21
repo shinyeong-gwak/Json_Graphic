@@ -29,7 +29,7 @@ public class Node_Station extends Node {
     }
 
     @Override
-    public Map<String, String> getData(){
+    public Map<String, String> getData() throws NullPointerException{
         Map<String,String> stadata = new LinkedHashMap<>();
         stadata.putIfAbsent("ssid",station.ssid);
         stadata.putIfAbsent("location", String.format("[ %.1f, %.1f ]",station.location[0],station.location[1]));

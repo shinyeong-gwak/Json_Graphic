@@ -1,4 +1,6 @@
-package frame;
+package panels;
+
+import frame.MainFrame;
 
 import javax.swing.*;
 import java.awt.*;
@@ -54,11 +56,13 @@ public class SouthPanel extends JPanel {
             // 실행할 명령어 및 작업 디렉토리 설정
             String command = "~/ns-allinone-3.40/ns-3.40/ns3 run \"wifi-mlms --config="+jsonPath.getText()+"\"";
             String workingDirectory = "";
-            // WSL 명령어
-            String wslCommand = "wsl ls /";
 
-            // ProcessBuilder를 사용하여 WSL 명령어 실행
-            Process process = new ProcessBuilder("~/ns-allinone-3.40/ns-3.40/ns3 run \"wifi-mlms --config="+jsonPath.getText()+"\"", wslCommand).start();
+            // 프로세스 빌더 생성
+            ProcessBuilder processBuilder = new ProcessBuilder(command.split(" "));
+            //processBuilder.directory(new java.io.File(workingDirectory));
+
+            // 프로세스 실행
+            Process process = processBuilder.start();
 
             // 프로세스의 출력을 읽어오기 위한 InputStream
             InputStream inputStream = process.getInputStream();

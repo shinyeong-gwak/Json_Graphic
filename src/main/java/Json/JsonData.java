@@ -2,11 +2,9 @@ package Json;
 
 import java.util.ArrayList;
 
-enum Qos_AC {
-    BE,BK,VO,VI,CsT
-}
 public class JsonData {
     public long simulationTime;
+    public int seeds;
     public ArrayList<Region> regions;
     public ArrayList<CustomAC> CustomAC;
     public ArrayList<Network> networks;
@@ -15,4 +13,5 @@ public class JsonData {
 
 
 }
+
 

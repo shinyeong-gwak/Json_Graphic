@@ -80,11 +80,15 @@ public class CoordPanel extends JPanel implements MouseInputListener {
 
         // AP 좌표에 대해 빨간색 점 그리기
         if(isRepaintMeth) {
+            int numRandomNode = 0;
+
             g2d.setColor(new Color(255, 0, 0, 64));
             for (Node_AP ap : MainFrame.nodeAPList ) {
                 if(focusList != null && focusList.contains((Node) ap))
                     ap.focusbit = true;
                 ap.drawNode(g2d,scale,offsetX,offsetY);
+                if(ap.isRandomLoc)
+                    numRandomNode += 1;
             }
 
             g2d.setColor(new Color(0, 0, 255, 64));
@@ -92,6 +96,8 @@ public class CoordPanel extends JPanel implements MouseInputListener {
                 if(focusList != null && focusList.contains((Node) station))
                     station.focusbit = true;
                 station.drawNode(g2d,scale,offsetX,offsetY);
+                if(station.isRandomLoc)
+                    numRandomNode += 1;
 
             }
 
@@ -101,7 +107,7 @@ public class CoordPanel extends JPanel implements MouseInputListener {
 
                 for(Region r : regions) {
                     String regionName = r.name;
-                    setSquare(g,regionName, r.xMin,r.xMax,r.yMin,r.yMax);
+                    setSquare(g,regionName,numRandomNode, r.xMin,r.xMax,r.yMin,r.yMax);
                 }
             }
         }
@@ -109,7 +115,7 @@ public class CoordPanel extends JPanel implements MouseInputListener {
         highlight(g,mouseX,mouseY,5*scale+3);
     }
 
-    private void setSquare(Graphics g,String regionName, int minX, int maxX, int minY, int maxY) {
+    private void setSquare(Graphics g,String regionName,int numRand, int minX, int maxX, int minY, int maxY) {
         g.setColor(Color.green);
         minX = (int) (minX*scale + offsetX - 3*scale);
         maxX = (int) (maxX*scale + offsetX + 3*scale);
@@ -120,6 +126,7 @@ public class CoordPanel extends JPanel implements MouseInputListener {
         g.drawLine(maxX,maxY,minX,maxY);
         g.drawLine(minX,maxY,minX,minY);
         g.drawString(regionName,minX,maxY+10);
+        g.drawString("Number Of Random : "+numRand,minX,maxY+20);
     }
 
     @Override
@@ -147,6 +154,10 @@ public class CoordPanel extends JPanel implements MouseInputListener {
 
         // 어레이리스트 2의 원 객체 확인
         for (Node_Station station : MainFrame.nodeStaList) {
+            if(station.isRandomLoc)
+                break;
+
+
             if (station.circle.contains(mouseX, mouseY) && !sameCoordCircles.contains(station)) {
                 sameCoordCircles.add(station);
             }

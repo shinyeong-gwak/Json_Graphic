@@ -8,6 +8,6 @@ public class Application {
     public boolean randomPacketSize;
     public String destType;
     public int destPort;
-    public Qos_AC AC;
+    public String AC;
 
 }

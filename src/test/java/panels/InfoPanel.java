@@ -2,6 +2,7 @@ package panels;
 
 import Json.Network;
 import Json.Station;
+import frame.Main;
 import frame.MainFrame;
 import node.Node;
 import node.Node_AP;
@@ -101,6 +102,9 @@ public class InfoPanel extends JPanel {
         //buttonZone.add(save,constraintsNet);
         setVisible(true);
 
+    }
+
+    public InfoPanel(JPanel basePanel, Dimension dim) {
     }
 
     private void changeSetting(JPanel apPanel) {

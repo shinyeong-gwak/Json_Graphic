@@ -1,6 +1,8 @@
 package Menu;
 
 
+import frame.Main;
+
 import javax.swing.*;
 
 public class myMenuBar extends JMenuBar {
@@ -12,7 +14,7 @@ public class myMenuBar extends JMenuBar {
     public myMenuBar(JPanel main) {
         this.basePanel = main;
 
-        fileMenu  = new FileMenu("File",basePanel);
+        fileMenu  = new FileMenu("File", (Main) main);
         //editMenu = new EditMenu("Edit");
         viewMenu = new ViewMenu("View");
     }

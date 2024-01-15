@@ -39,6 +39,12 @@
             <artifactId>jsch-logger</artifactId>
             <version>0.1.55</version> <!-- JSch 버전과 동일한 버전 사용 -->
         </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.26</version> <!-- 현재 버전에 맞게 변경 -->
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
 
 </project>

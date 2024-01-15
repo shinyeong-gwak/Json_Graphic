@@ -2,6 +2,9 @@ package frame;
 
 import com.google.gson.JsonArray;
 import Menu.myMenuBar;
+import data.JsonData;
+import lombok.Getter;
+import lombok.Setter;
 import panels.CoordPanel;
 import panels.InfoPanel;
 import panels.NorthPanel;
@@ -13,15 +16,18 @@ import java.util.Optional;
 
 
 public class Main extends JPanel{
-    JPanel northPanel;
-    JPanel southPanel;
-    JPanel infoPanel;
-    JPanel coordPanel;
-    static JMenuBar menuBar;
+    public NorthPanel northPanel;
+    public SouthPanel southPanel;
+    public InfoPanel infoPanel;
+    public CoordPanel coordPanel;
+    public static myMenuBar menuBar;
+
+    @Setter
+    @Getter
+    private static JsonData jsonData;
 
 
     static Dimension frameDim;
-    Optional<JsonArray> jsonOptional;
 
 
     public Main() {
@@ -35,9 +41,9 @@ public class Main extends JPanel{
         //scroll2.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
 
         //각 영역에 들어갈 패널 생성하기
-        northPanel = new NorthPanel();
-        southPanel = new SouthPanel();
-        infoPanel = new InfoPanel();
+        northPanel = new NorthPanel(this);
+        southPanel = new SouthPanel(this);
+        infoPanel = new InfoPanel(this,scroll2Dim);
         coordPanel = new CoordPanel(this,scroll2Dim);
 
         add(scroll1, BorderLayout.WEST);
@@ -60,6 +66,6 @@ public class Main extends JPanel{
         frame.setVisible(true);
     }
 
-    public static boolean isInitialized;
+    public static boolean isInitialized = false;
 
 }

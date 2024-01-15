@@ -1,5 +1,6 @@
 package panels;
 
+import frame.Main;
 import frame.MainFrame;
 
 import javax.swing.*;
@@ -11,7 +12,7 @@ import java.io.*;
 import static frame.MainFrame.jsonPath;
 
 public class SouthPanel extends JPanel {
-    public SouthPanel() {
+    public SouthPanel(Main main) {
         setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
         c.fill = GridBagConstraints.BOTH;

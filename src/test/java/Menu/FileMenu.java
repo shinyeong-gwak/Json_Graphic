@@ -1,8 +1,9 @@
 package Menu;
 
-import Json.JsonData;
-import Json.JsonParser;
-import frame.MainFrame;
+import data.JsonData;
+import extractor.JsonParser;
+import frame.Main;
+import panels.NorthPanel;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -10,9 +11,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 
+
 public class FileMenu extends JMenuItem{
-    JPanel basePanel;
-    public FileMenu(String title,JPanel basePanel) {
+    Main basePanel;
+    public FileMenu(String title,Main basePanel) {
         super(title);
         this.basePanel = basePanel;
         JMenuItem open = new OpenMenuItem("Open");
@@ -43,12 +45,15 @@ public class FileMenu extends JMenuItem{
 
 
                 if (filePath.endsWith(".json")) {
-
                     JsonData jsonData = JsonParser.parse(selectedFile);
+                    jsonData.setJsonPath(filePath);
 
-                    //MainFrame.simTime.setText(MainFrame.simTime.getText() + jsonData.simulationTime);
-                    //MainFrame.jsonPath.setText(filePath);
+                    NorthPanel views = basePanel.northPanel;
 
+                    views.viewSimulationTime.setText("Simulation Time : "+jsonData.getSimulationTime());
+                    views.viewJsonPath.setText(jsonData.getJsonPath());
+
+                    Main.setJsonData(jsonData);
 
                 } else {
                     JOptionPane.showMessageDialog(FileMenu.this, "Selected file is not a JSON file", "Error", JOptionPane.ERROR_MESSAGE);

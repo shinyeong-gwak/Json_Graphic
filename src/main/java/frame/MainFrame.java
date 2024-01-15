@@ -77,6 +77,7 @@ public class MainFrame extends JFrame{
         });
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocation(100, 100);
         frameDim = new Dimension(1000,800);
         setSize(frameDim);
         setVisible(true);

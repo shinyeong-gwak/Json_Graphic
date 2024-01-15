@@ -61,12 +61,15 @@ public class SouthPanel extends JPanel {
         Process process = null;
         try {
             // 실행할 명령어 및 작업 디렉토리 설정
-            String command = "~/ns-allinone-3.40/ns-3.40/ns3 run \"wifi-mlms --config=" + jsonPath.getText() + "\"";
-            String workingDirectory = "";
+            String command = "\"wifi-mlms --config=" + jsonPath.getText() + "\"";
+            String workingDirectory = "/home/mlms/ns-allinone-3.40/ns-3.40/";
+
+            String userHome = System.getProperty("user.home");
+            System.out.println("User Home Directory: " + userHome);
 
             // ProcessBuilder를 사용하여 WSL 명령어 실행
-            ProcessBuilder processBuilder = new ProcessBuilder( command);
-            //processBuilder.directory(new File(workingDirectory));
+            ProcessBuilder processBuilder = new ProcessBuilder("./ns3" , "run",command);
+            processBuilder.directory(new File(workingDirectory));
             process = processBuilder.start();
 
             // 프로세스의 출력 스트림을 읽어오기 위한 InputStream
@@ -117,6 +120,8 @@ public class SouthPanel extends JPanel {
             newPanel.add(scrollPane, BorderLayout.CENTER);
 
             newFrame.add(newPanel);
+
+            newFrame.setLocation(150, 100);
 
             newFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             newFrame.setSize(new Dimension(900, 800));

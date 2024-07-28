@@ -8,15 +8,16 @@
 
 
 
-   ![](Aspose.Words.22f62f65-cc84-493f-9f8d-83ca85439a8d.001.png)Mac OS : xquartz / 터미널에서 직접 아래의 명령어를 입력하면 설치 가능
+<img src="https://github.com/shinyeong-gwak/Json_Graphic/assets/Aspose.Words.22f62f65-cc84-493f-9f8d-83ca85439a8d.001.png">
+Mac OS : xquartz / 터미널에서 직접 아래의 명령어를 입력하면 설치 가능
 
    이후 재부팅 필요
 
 - 시뮬레이터가 설치된 Linux
 
 
-
-  ![](Aspose.Words.22f62f65-cc84-493f-9f8d-83ca85439a8d.002.png)Java 설치
+<img src="https://github.com/shinyeong-gwak/Json_Graphic/assets/Aspose.Words.22f62f65-cc84-493f-9f8d-83ca85439a8d.002.png">
+Java 설치
 
   Ssh 설정 변경 – 해당 설정 앞에 #이 있다면 지우기, 설정을 다음과 같게 변경
 
@@ -42,8 +43,10 @@
 
 
 
-
-![](Aspose.Words.22f62f65-cc84-493f-9f8d-83ca85439a8d.003.png)![](Aspose.Words.22f62f65-cc84-493f-9f8d-83ca85439a8d.004.png)![](Aspose.Words.22f62f65-cc84-493f-9f8d-83ca85439a8d.005.png)		esc 클릭 후 :wq 입력 – 저장 후 나가기 됨.
+<img src="https://github.com/shinyeong-gwak/Json_Graphic/assets/Aspose.Words.22f62f65-cc84-493f-9f8d-83ca85439a8d.003.png">
+<img src="https://github.com/shinyeong-gwak/Json_Graphic/assets/Aspose.Words.22f62f65-cc84-493f-9f8d-83ca85439a8d.004.png">
+<img src="https://github.com/shinyeong-gwak/Json_Graphic/assets/Aspose.Words.22f62f65-cc84-493f-9f8d-83ca85439a8d.005.png">
+esc 클릭 후 :wq 입력 – 저장 후 나가기 됨.
 
 이 후 재접속 시 ssh -X옵션을 통해 접속
 
@@ -54,7 +57,7 @@
 
 
 
-1. ![](Aspose.Words.22f62f65-cc84-493f-9f8d-83ca85439a8d.006.png)**GUI 실행**
+1. <img src="https://github.com/shinyeong-gwak/Json_Graphic/assets/Aspose.Words.22f62f65-cc84-493f-9f8d-83ca85439a8d.006.png">**GUI 실행**
 
 
 1. **실행 방법**
@@ -62,17 +65,17 @@
 
 ![텍스트, 스크린샷이(가) 표시된 사진
 
-자동 생성된 설명](Aspose.Words.22f62f65-cc84-493f-9f8d-83ca85439a8d.007.png)![텍스트, 전자제품, 스크린샷, 소프트웨어이(가) 표시된 사진
+<img src="https://github.com/shinyeong-gwak/Json_Graphic/assets/Aspose.Words.22f62f65-cc84-493f-9f8d-83ca85439a8d.007.png">
 
-자동 생성된 설명](Aspose.Words.22f62f65-cc84-493f-9f8d-83ca85439a8d.008.png)
+<img src="https://github.com/shinyeong-gwak/Json_Graphic/assets/Aspose.Words.22f62f65-cc84-493f-9f8d-83ca85439a8d.008.png">
 
 ![텍스트, 스크린샷, 도표, 소프트웨어이(가) 표시된 사진
 
-자동 생성된 설명](Aspose.Words.22f62f65-cc84-493f-9f8d-83ca85439a8d.009.png)
+<img src="https://github.com/shinyeong-gwak/Json_Graphic/assets/Aspose.Words.22f62f65-cc84-493f-9f8d-83ca85439a8d.009.png">
 
-![](Aspose.Words.22f62f65-cc84-493f-9f8d-83ca85439a8d.010.png)**   : station 노드
+<img src="https://github.com/shinyeong-gwak/Json_Graphic/assets/Aspose.Words.22f62f65-cc84-493f-9f8d-83ca85439a8d.010.png">**   : station 노드
 
-![](Aspose.Words.22f62f65-cc84-493f-9f8d-83ca85439a8d.011.png)   : AP 노드
+<img src="https://github.com/shinyeong-gwak/Json_Graphic/assets/Aspose.Words.22f62f65-cc84-493f-9f8d-83ca85439a8d.011.png">   : AP 노드
 
 노드의 색이 진하게 표시될수록 여러 노드가 해당 위치에 겹쳐있다.
 
